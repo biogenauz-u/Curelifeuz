@@ -1,0 +1,576 @@
+[
+  {
+    "id": "8d1b29d5-2f00-443c-b260-75b20aeecd3d",
+    "slug": "fimbrioblok-plyus",
+    "number": "01",
+    "name": "Фимбриоблок Плюс",
+    "image": "/uploads/89f0b6e1-ad7d-4140-b756-59d5607e9431.png",
+    "detailImage": "/uploads/7eac49fd-96c0-428e-8d18-3af438a3607a.png",
+    "certificate": "/uploads/619ffb10-1692-4e91-94ea-aac35448bd65.jpg",
+    "instruction": "/uploads/62be287a-7268-43c7-939a-289b5f294a92.pdf",
+    "originLogo": "/uploads/88f8c9b2-f843-409f-90b0-f1d6e4a4117a.png",
+    "visible": true,
+    "ru": {
+      "name": "Фимбриоблок Плюс",
+      "category": "Биологически активная добавка",
+      "description": "Фимбриоблок Плюс помогает полностью защитить от инфекций мочевого пузыря, сохранить здоровье мочевыводящих путей, предотвратить рецидивы инфекций мочевыводящих путей при цистите, снизить риск прилипания уропатогенных бактерий к эпителиальным клеткам мочевыводящих путей.",
+      "stats": [
+        "Пудра",
+        "1 палочка (2,47 г)",
+        "От 1 палочки"
+      ],
+      "detail": {
+        "warning": "Не считается наркотиком. Биологически активная добавка не может заменить разнообразное, сбалансированное питание и здоровый образ жизни.",
+        "raw": "",
+        "manufacturer": "",
+        "usageTitle": "Инструкция по применению",
+        "usageBody": "Его применяют для поддержания мочевыделительной системы в здоровом состоянии, а также для поддержки естественных защитных сил организма в условиях, которые могут вызвать воспаление мочевого пузыря и нижних мочевыводящих путей. (Цистит)",
+        "dailyDose": "1",
+        "before": [],
+        "safety": [
+          {
+            "title": "Противопоказания",
+            "body": "При наличии индивидуальной чувствительности к компонентам средства принимать его не рекомендуется. Не предназначен для детей до 14 лет."
+          },
+          {
+            "title": "Возможные побочные эффекты",
+            "body": "При обнаружении нежелательной реакции прекратите прием препарата и обратитесь к специалисту."
+          },
+          {
+            "title": "Беременность и кормление грудью",
+            "body": "Во время беременности и кормления грудью препарат рекомендуется принимать только под наблюдением и консультацией специалиста."
+          },
+          {
+            "title": "Условия хранения",
+            "body": "Храните продукт при температуре и условиях хранения, указанных на упаковке. Хранить в недоступном для детей месте."
+          }
+        ],
+        "composition": [
+          {
+            "name": "hwwwhD-манноза",
+            "amount": "2000 mg"
+          },
+          {
+            "name": "Витамин С",
+            "amount": "80 mg"
+          },
+          {
+            "name": "Ниацин",
+            "amount": "16 mg"
+          },
+          {
+            "name": "Цинк",
+            "amount": "5 mg"
+          },
+          {
+            "name": "Биотин",
+            "amount": "75 mkg"
+          },
+          {
+            "name": "Селен",
+            "amount": "27,5 mkg"
+          }
+        ],
+        "origin": {
+          "type": "imported",
+          "rawCountry": "",
+          "makeCountry": "",
+          "rawFull": "",
+          "manufacturerFull": "",
+          "role": "Распределитель",
+          "importedCountry": "Германия",
+          "importedFull": "Авитале ГмбХ"
+        }
+      }
+    },
+    "uz": {
+      "name": "Fimbrioblok Plyus",
+      "category": "Biologik faol qo‘shimcha",
+      "description": "Fimbrioblok Plyus qovuq infektsiyalaridan to‘liq himoyalashga, siydik yo‘llari salomatligini saqlashga, tsistitda siydik yo‘llari infektsiyalarining qaytalanishini oldini olishga va uropatogen bakteriyalarning siydik yo‘llari epiteliy hujayralariga yopishish xavfini kamaytirishga yordam beradi.",
+      "stats": [
+        "Kukun",
+        "1 stik (2,47 g)",
+        "1 stikdan"
+      ],
+      "detail": {
+        "warning": "Dori vositasi hisoblanmaydi. Dietik qo‘shimcha turli xil muvozanatlashtirilgan ovqatlanish ratsioni va sog‘lom turmush tarzi o‘rnini bosa olmaydi.",
+        "raw": "",
+        "manufacturer": "",
+        "usageTitle": "Qo‘llash uchun ko‘rsatmalar",
+        "usageBody": "Siydik chiqarish tizimini sog‘lom holatda saqlash, shuningdek qovuq va pastki siydik yo‘llarining yallig‘lanishiga olib kelishi mumkin bo‘lgan sharoitlarda organizmning tabiiy himoyasini qo‘llab-quvvatlash uchun qo‘llaniladi.(Sistit)",
+        "dailyDose": "1",
+        "before": [],
+        "safety": [
+          {
+            "title": "Qarshi ko‘rsatmalar",
+            "body": "Mahsulot tarkibiy qismlariga individual sezuvchanlik mavjud bo‘lsa, qabul qilish tavsiya etilmaydi. 14 yoshgacha bo‘lgan bolalar uchun mo‘ljallanmagan."
+          },
+          {
+            "title": "Mumkin bo‘lgan nojo‘ya reaksiyalar",
+            "body": "Nojo‘ya reaksiya kuzatilganda mahsulotni qabul qilishni to‘xtating va mutaxassis bilan maslahatlashing."
+          },
+          {
+            "title": "Homiladorlik va emizish davri",
+            "body": "Homiladorlik va emizish davrida mahsulotni faqat mutaxassis tavsiyasi va nazorati ostida qabul qilish tavsiya etiladi."
+          },
+          {
+            "title": "Saqlash sharoitlari",
+            "body": "Mahsulot qadoqda ko‘rsatilgan harorat va saqlash sharoitlariga rioya qilgan holda saqlansin. Bolalar qo‘li yetmaydigan joyda saqlang."
+          }
+        ],
+        "composition": [
+          {
+            "name": "hwwwhD-mannoza",
+            "amount": "2000 mg"
+          },
+          {
+            "name": "C vitamini",
+            "amount": "80 mg"
+          },
+          {
+            "name": "Niatsin",
+            "amount": "16 mg"
+          },
+          {
+            "name": "Tsink",
+            "amount": "5 mg"
+          },
+          {
+            "name": "Biotin",
+            "amount": "75 mkg"
+          },
+          {
+            "name": "Selen",
+            "amount": "27,5 mkg"
+          }
+        ],
+        "origin": {
+          "type": "imported",
+          "rawCountry": "",
+          "makeCountry": "",
+          "rawFull": "",
+          "manufacturerFull": "",
+          "role": "Distiributer",
+          "importedCountry": "Germaniya",
+          "importedFull": "Avitale GmbH"
+        }
+      }
+    }
+  },
+  {
+    "id": "8d00c67c-baf1-4da4-94aa-38194a60012d",
+    "slug": "mahsulot",
+    "number": "02",
+    "name": "ТРИСЕР ПЛУС",
+    "image": "/uploads/47ada23b-cba1-44fe-9089-47a46ade32d7.png",
+    "detailImage": "/uploads/f8a5e434-d690-47ee-a363-2470ac984ce1.png",
+    "certificate": "/uploads/0b96ec18-1dbc-4a10-8a37-02fdcc4d99a6.jpg",
+    "instruction": "/uploads/5235bf66-8a9f-43d2-8495-29ba8327cebb.jpg",
+    "originLogo": null,
+    "visible": true,
+    "ru": {
+      "name": "ТРИСЕР ПЛУС",
+      "category": "Биологически активная добавка",
+      "description": "Трисер плюс – это комбинация натуральных ферментов растительного и животного происхождения, обладающая фибринолитическим, противовоспалительным, противоопухолевым и иммуностимулирующим действием.",
+      "stats": [
+        "Капсулы",
+        "№ 30",
+        "2-3 раза"
+      ],
+      "detail": {
+        "warning": "Биологически активная добавка. Не лекарство!",
+        "raw": "ШтернВитамин ГмбХ",
+        "manufacturer": "ООО «EVERT PHARM AG».",
+        "usageTitle": "Инструкция по применению",
+        "usageBody": "Применяют в составе комплексной терапии при цистите, простатите, инфекциях, передающихся половым путем, хронических половых инфекциях, аднекситах, гинекологии, гестозах, мастопатиях, синуситах, бронхитах, пневмониях, ревматоидном артрите, болезни Бехтерова, послеоперационных осложнениях, ранах, переломах, ушибах, воспалениях мягких тканей, ожогах, вирусных инфекциях.",
+        "dailyDose": "2",
+        "before": [
+          "Проверка индивидуальной чувствительности к компонентам",
+          "Не быть моложе 12 лет",
+          "Проконсультируйтесь с врачом, если у вас есть нарушения свертываемости крови или вы принимаете антикоагулянты.",
+          "При беременности и кормлении грудью принимать только под наблюдением врача.",
+          "Контроль мер предосторожности при тяжелых заболеваниях печени и почек."
+        ],
+        "safety": [
+          {
+            "title": "Противопоказания к использованию",
+            "body": "Индивидуальная повышенная чувствительность к компонентам препарата и детский возраст до 12 лет. Нельзя применять пациентам с непереносимостью галактозы, дефицитом лактазы Лаппа или мальабсорбцией глюкозы-галактозы."
+          },
+          {
+            "title": "Во время беременности и кормления грудью",
+            "body": "Беременные и кормящие женщины могут принимать его только под наблюдением врача."
+          },
+          {
+            "title": "Побочные эффекты",
+            "body": "Он хорошо усваивается. В отдельных случаях могут наблюдаться небольшие изменения консистенции и запаха кала, крапивница."
+          },
+          {
+            "title": "Меры предосторожности",
+            "body": "С осторожностью применяют у пациентов с риском кровотечений, нарушением свертываемости крови и принимающих антикоагулянты, а также при тяжелых заболеваниях печени и почек."
+          }
+        ],
+        "composition": [
+          {
+            "name": "Серратиопептидаза",
+            "amount": "8 mg"
+          },
+          {
+            "name": "Трипсин",
+            "amount": "15 mg"
+          },
+          {
+            "name": "Папаин",
+            "amount": "20 mg"
+          },
+          {
+            "name": "Инулин",
+            "amount": "8 mg"
+          },
+          {
+            "name": "Экстракт фенхеля",
+            "amount": "2 mg"
+          },
+          {
+            "name": "Рутозида тригидрат",
+            "amount": "50 mg"
+          }
+        ],
+        "origin": {
+          "type": "local",
+          "rawCountry": "Германия",
+          "makeCountry": "Узбекистан",
+          "rawFull": "ШтернВитамин ГмбХ",
+          "manufacturerFull": "ООО «EVERT PHARM AG»",
+          "role": "Распределитель",
+          "importedCountry": "",
+          "importedFull": ""
+        }
+      }
+    },
+    "uz": {
+      "name": "TRISER PLUS",
+      "category": "Biologik faol qo‘shimcha",
+      "description": "Triser plus o‘simlik va hayvon kelib chiqishi tabiiy fermentlarining kombinatsiyasi bo‘lib, fibrinolitik, yallig‘lanishga qarshi, shishlarga qarshi hamda immunitetni kuchaytiruvchi ta’sir ko‘rsatadi.",
+      "stats": [
+        "Kapsulalar",
+        "№ 30",
+        "1 tadan 2-3 mahal"
+      ],
+      "detail": {
+        "warning": "Biologik faol qo‘shimcha. Dori vositasi emas!",
+        "raw": "SternVitamin GmbH",
+        "manufacturer": "«EVERT PHARM AG» ",
+        "usageTitle": "Qo‘llanish ko‘rsatmalari",
+        "usageBody": "Sistit, prostatit, jinsiy yo‘l bilan yuqadigan infeksiyalar, surunkali genital infeksiyalar, adneksit, ginekologiya, gestoz, mastopatiya, sinusit, bronxit, pnevmoniya, revmatoid artrit, Bexterov kasalligi, operatsiyadan keyingi asoratlar, jarohatlar, sinishlar, ko‘karishlar, yumshoq to‘qimalarning yallig‘lanishi, kuyishlar hamda virusli infeksiyalarda kompleks terapiya tarkibida qo‘llaniladi.",
+        "dailyDose": "2",
+        "before": [
+          "Komponentlarga individual sezuvchanlikni tekshirish",
+          "12 yoshdan kichik bo‘lmaslik",
+          "Qon ivish buzilishlari yoki antikoagulyantlar qabul qilishda shifokor bilan maslahatlashish",
+          "Homiladorlik va emizish davrida faqat shifokor nazorati ostida qabul qilish",
+          "Jigar va buyraklarning og‘ir kasalliklarida ehtiyotkorlik choralari nazorat qilinishi"
+        ],
+        "safety": [
+          {
+            "title": "Qo‘llashga qarshi ko‘rsatmalar",
+            "body": "Preparat komponentlariga individual yuqori sezuvchanlik va 12 yoshgacha bo‘lgan bolalar. Galaktoza intoleransi, Lapp laktaza yetishmovchiligi yoki glyukoza-galaktoza malabsorbsiyasi bo‘lgan bemorlarga qo‘llash mumkin emas."
+          },
+          {
+            "title": "Homiladorlik va emizish davrida",
+            "body": "Homilador va emizikli ayollar faqat shifokor nazorati ostida qabul qilishlari mumkin."
+          },
+          {
+            "title": "Nojo‘ya ta’sirlari",
+            "body": "Yaxshi o‘zlashtiriladi. Ba’zi hollarda najasning mustahkamligi va hidida kichik o‘zgarishlar, eshakemi kuzatilishi mumkin."
+          },
+          {
+            "title": "Ehtiyotkorlik choralari",
+            "body": "Qon ketish xavfi bo‘lgan, qon ivish vaqti buzilgan hamda antikoagulyantlar qabul qiladigan bemorlarda, shuningdek jigar va buyraklarning og‘ir kasalliklarida ehtiyotkorlik bilan qo‘llaniladi."
+          }
+        ],
+        "composition": [
+          {
+            "name": "Serratiopeptidaza",
+            "amount": "8 mg"
+          },
+          {
+            "name": "Tripsin",
+            "amount": "15 mg"
+          },
+          {
+            "name": "Papain",
+            "amount": "20 mg"
+          },
+          {
+            "name": "Inulin",
+            "amount": "8 mg"
+          },
+          {
+            "name": "Fenxel ekstrakti",
+            "amount": "2 mg"
+          },
+          {
+            "name": "Rutozid trigidrat",
+            "amount": "50 mg"
+          }
+        ],
+        "origin": {
+          "type": "local",
+          "rawCountry": "Germaniya",
+          "makeCountry": "O‘zbekiston",
+          "rawFull": "SternVitamin GmbH",
+          "manufacturerFull": "«EVERT PHARM AG» MChJ",
+          "role": "Distiributer",
+          "importedCountry": "",
+          "importedFull": ""
+        }
+      }
+    }
+  },
+  {
+    "id": "d6801cbd-3c74-4250-9852-4fdda9dc0ec1",
+    "slug": "novalife-plus",
+    "number": "03",
+    "name": "Новалиф Плюс",
+    "image": "/uploads/fc60453e-bc0e-46e5-bdcb-67fcf0e1072b.png",
+    "detailImage": "/uploads/76ea826e-6e65-47be-9796-27f3fe32c1f4.png",
+    "certificate": "/uploads/2e080f75-69f5-4295-86b4-97de3e2abbb3.jpg",
+    "instruction": "/uploads/6ac695f4-2572-4147-866e-abbfa0f32ea6.pdf",
+    "originLogo": null,
+    "visible": true,
+    "ru": {
+      "name": "Новалиф Плюс",
+      "category": "Биологически активная добавка к пище.",
+      "description": "Новалиф Плюс – комплекс, предназначенный для профилактики и лечения гиповитаминозов, дефицита минералов и микроэлементов, на этапе планирования беременности, во время беременности, после родов и в период грудного вскармливания.",
+      "stats": [
+        "Капсула",
+        "60 капсул",
+        "от 1"
+      ],
+      "detail": {
+        "warning": "Не превышайте рекомендуемую суточную дозу. Биологически активная добавка к пище не считается лекарственным средством.",
+        "raw": "ШтернВитамин ГмбХ",
+        "manufacturer": "ООО «EVERT pharma AG»",
+        "usageTitle": "Инструкция по применению",
+        "usageBody": "Профилактика и лечение гиповитаминозов, дефицита минералов и микроэлементов при планировании беременности, во время беременности, после родов и в период грудного вскармливания. Поддержка репродуктивной функции. Дополнительный источник полиненасыщенных жирных кислот.",
+        "dailyDose": "1",
+        "before": [
+          "Перед применением рекомендуется проконсультироваться с врачом.",
+          "Необходимо проконсультироваться с врачом в период беременности и лактации.",
+          "Не превышайте рекомендуемую дозу."
+        ],
+        "safety": [
+          {
+            "title": "Противопоказания",
+            "body": "Повышенная чувствительность к компонентам."
+          },
+          {
+            "title": "Предупреждение",
+            "body": "Данных по применению препарата беременным и в период лактации недостаточно, поэтому перед применением обязательно проконсультируйтесь с врачом."
+          },
+          {
+            "title": "Условия хранения",
+            "body": "Хранить в сухом, защищенном от света месте, при температуре не выше 25°С. Хранить в недоступном для детей месте. Срок годности после открытия 6 месяцев."
+          }
+        ],
+        "composition": [
+          {
+            "name": "Рыбий жир",
+            "amount": "500 mg"
+          },
+          {
+            "name": "Витамин Е",
+            "amount": "12 mg"
+          },
+          {
+            "name": "Цинк (моногидрат сульфата цинка 27,45)",
+            "amount": "ekv. 10 mg"
+          },
+          {
+            "name": "Витамин В3",
+            "amount": "8 mg"
+          },
+          {
+            "name": "Витамин В5",
+            "amount": "6 mg"
+          },
+          {
+            "name": "Марганец (сульфат марганца)",
+            "amount": "ekv. 2 mg"
+          },
+          {
+            "name": "Витамин В6",
+            "amount": "1,4 mg"
+          },
+          {
+            "name": "D-биотин",
+            "amount": "0,05 mg"
+          },
+          {
+            "name": "Витамин B12 (метилкобаламин)",
+            "amount": "0,0025 mg"
+          },
+          {
+            "name": "Витамин В1",
+            "amount": "1,1 mg"
+          },
+          {
+            "name": "Витамин В2",
+            "amount": "1,4 mg"
+          },
+          {
+            "name": "Витамин А",
+            "amount": "0,8 mg"
+          },
+          {
+            "name": "Фолиевая кислота",
+            "amount": "0,4 mg"
+          },
+          {
+            "name": "Йод",
+            "amount": "0,15 mg"
+          },
+          {
+            "name": "Селен",
+            "amount": "0,055 mg"
+          },
+          {
+            "name": "Витамин К2 (менахинон-7)",
+            "amount": "0,075 mg"
+          },
+          {
+            "name": "витамин D3 (холекальциферол)",
+            "amount": "0,01 mg"
+          }
+        ],
+        "origin": {
+          "type": "local",
+          "rawCountry": "Германия",
+          "makeCountry": "Узбекистан",
+          "rawFull": "ШтернВитамин ГмбХ",
+          "manufacturerFull": "ООО «EVERT pharma AG»",
+          "role": "По заказу ООО «CURELIFE»",
+          "importedCountry": "",
+          "importedFull": ""
+        }
+      }
+    },
+    "uz": {
+      "name": "Novalife Plus",
+      "category": "Biologik faol oziq-ovqat qo‘shimchasi",
+      "description": "Novalife Plus — gipovitaminoz, mineral moddalar va mikroelementlar tanqisligining oldini olish va davolash, homiladorlikni rejalashtirish bosqichida, homiladorlik davrida, tug‘ruqdan keyin hamda emizish davrida qo‘llash uchun mo‘ljallangan majmuadir.",
+      "stats": [
+        "Kapsula",
+        "60 kapsula",
+        "1 tadan"
+      ],
+      "detail": {
+        "warning": "Tavsiya etilgan sutkalik dozani oshirmang. Biologik faol oziq-ovqat qo‘shimchasi dori vositasi hisoblanmaydi.",
+        "raw": " SternVitamin GmbH",
+        "manufacturer": " «EVERT pharma AG» MChJ ",
+        "usageTitle": "Qo‘llash uchun ko‘rsatmalar",
+        "usageBody": "Homiladorlikni rejalashtirish bosqichida, homiladorlik davrida, tug‘ruqdan keyin va emizish davrida gipovitaminoz, mineral moddalar va mikroelementlar tanqisligining oldini olish hamda davolash. Reproduktiv funksiyani qo‘llab-quvvatlash. Ko‘p to‘yinmagan yog‘ kislotalarining qo‘shimcha manbai.",
+        "dailyDose": "1",
+        "before": [
+          "Qo‘llashdan oldin shifokor bilan maslahatlashish tavsiya etiladi.",
+          "Homiladorlik va laktatsiya davrida shifokor bilan maslahatlashish shart.",
+          "Tavsiya etilgan dozani oshirmang."
+        ],
+        "safety": [
+          {
+            "title": "Qarshi ko‘rsatmalar",
+            "body": "Tarkibiy qismlarga yuqori sezuvchanlik."
+          },
+          {
+            "title": "Ogohlantirish",
+            "body": "Homilador ayollar va laktatsiya davrida mahsulotni qo‘llash bo‘yicha yetarli ma’lumotlar yo‘q, shuning uchun qo‘llashdan oldin albatta shifokor bilan maslahatlashning."
+          },
+          {
+            "title": "Saqlash sharoitlari",
+            "body": "Quruq, yorug‘likdan himoyalangan joyda, 25°C dan yuqori bo‘lmagan haroratda saqlansin. Bolalar ololmaydigan joyda saqlansin. O‘ram ochilgandan keyin saqlash muddati — 6 oy."
+          }
+        ],
+        "composition": [
+          {
+            "name": "Baliq yog‘i",
+            "amount": "500 mg"
+          },
+          {
+            "name": "E vitamini",
+            "amount": "12 mg"
+          },
+          {
+            "name": "Rux (rux sulfat monogidrati 27,45)",
+            "amount": "ekv. 10 mg"
+          },
+          {
+            "name": "B3 vitamini",
+            "amount": "8 mg"
+          },
+          {
+            "name": "B5 vitamini",
+            "amount": "6 mg"
+          },
+          {
+            "name": "Marganets (marganets sulfat)",
+            "amount": "ekv. 2 mg"
+          },
+          {
+            "name": "B6 vitamini",
+            "amount": "1,4 mg"
+          },
+          {
+            "name": "D-biotin",
+            "amount": "0,05 mg"
+          },
+          {
+            "name": "B12 vitamini (metilkobalamin)",
+            "amount": "0,0025 mg"
+          },
+          {
+            "name": "B1 vitamini",
+            "amount": "1,1 mg"
+          },
+          {
+            "name": "B2 vitamini",
+            "amount": "1,4 mg"
+          },
+          {
+            "name": "A vitamini",
+            "amount": "0,8 mg"
+          },
+          {
+            "name": "Foliy kislotasi",
+            "amount": "0,4 mg"
+          },
+          {
+            "name": "Yod",
+            "amount": "0,15 mg"
+          },
+          {
+            "name": "Selen",
+            "amount": "0,055 mg"
+          },
+          {
+            "name": "K2 vitamini (menaxinon-7)",
+            "amount": "0,075 mg"
+          },
+          {
+            "name": "D3 vitamini (xolekaltsiferol)",
+            "amount": "0,01 mg"
+          }
+        ],
+        "origin": {
+          "type": "local",
+          "rawCountry": "Germaniya",
+          "makeCountry": "O‘zbekiston",
+          "rawFull": "SternVitamin GmbH",
+          "manufacturerFull": "«EVERT pharma AG» MChJ",
+          "role": "«CURELIFE» MChJ buyurtmasiga ko‘ra",
+          "importedCountry": "",
+          "importedFull": ""
+        }
+      }
+    }
+  }
+]

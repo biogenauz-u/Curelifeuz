@@ -1,0 +1,380 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────
+   CureLife design tokens
+   Manba: Figma "CureLife" (file C7RQZEOVBntyPJzTiUvceH)
+   ────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-brand-100: #d9f4f2;
+  --color-brand-200: #97e1db; /* ingichka ramkalar, gradient o'rta nuqtasi */
+  --color-brand-400: #32c8c4; /* gradient boshi */
+  --color-brand-600: #087e7d; /* gradient oxiri */
+  --color-brand-700: #067978; /* badge / eyebrow matni */
+
+  --color-accent: #0ba7a6; /* bo'lim aksenti: sarlavha, ikonka, chiziq */
+
+  --color-ink: #171515; /* hero sarlavhasi */
+  --color-ink-deep: #102021; /* bo'lim sarlavhalari, badge nuqtasi */
+  --color-muted: #676971; /* hero ikkilamchi matni */
+  --color-body: #607776; /* bo'limlardagi matn */
+  --color-label: #527370; /* "02 / ..." kabi yorliqlar */
+
+  /* Matn — Inter, sarlavhalar — Manrope (maketdagidek) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), sans-serif;
+
+  --radius-pill: 999px;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+
+    /*
+     * Navbar `position: fixed` — scroll paytida tepada qoladi. Oqimdan
+     * chiqqani uchun balandligi ikki joyda kerak bo'ladi: Header ichidagi
+     * bo'shliq (spacer) va anchor'ga o'tish chekkasi. Yagona manba shu yer.
+     * Qiymat = tepa bo'shliq + panel balandligi (24+64 / 36+82).
+     */
+    --header-h: 88px;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 118px;
+    }
+  }
+
+  body {
+    background-color: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 3px solid rgba(11, 167, 166, 0.42);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /*
+   * Anchor'ga o'tilganda sarlavha kontent tepasini yopib qolmasin.
+   * Bitta qoida — har bir bo'limga alohida class yozish shart emas.
+   */
+  :where(section[id], footer[id], div[id], article[id]) {
+    scroll-margin-top: calc(var(--header-h) + 16px);
+  }
+}
+
+/*
+ * Harakatni kamaytirish so'ralganda: silliq scroll va barcha
+ * o'tish/animatsiyalar deyarli o'chadi (WCAG 2.3.3).
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Desktop masshtabi
+
+   Maket 1920px uchun chizilgan va o'lchamlar aynan pikselda berilgan.
+   Torroq desktop ekranda (masalan MacBook — 1470px) hamma narsa kattaroq
+   ko'rinadi va chetdagi bo'shliq yo'qoladi. Shuning uchun butun sahifa
+   brauzer zoom'i kabi proportsional siqiladi.
+
+   ETALON KENGLIK = 1680px. Ya'ni sayt o'zini 1680px li oyna deb hisoblaydi
+   va shu maydonni ekranga sig'diradi. Maketning to'liq 1920px'i juda kichik
+   chiqqani uchun shu oraliq qiymat tanlandi.
+
+   O'LCHAMNI SOZLASH: pastdagi zoom qiymatlari = breakpoint / 1680.
+   Kattaroq ko'rinsin desangiz — etalonni kamaytiring (masalan 1600),
+   kichikroq bo'lsin desangiz — oshiring (masalan 1800), va qiymatlarni
+   qayta hisoblang.
+
+   `zoom: calc(100vw / 1680)` Chrome'da ishlamaydi (qiymat 1 ga tushadi),
+   shuning uchun 80px qadamli media query'lar.
+   ────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .hero-frame {
+    height: 56.25vw; /* 1920 × 1080 nisbati */
+    min-height: 880px;
+    max-height: 1080px;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    zoom: 0.762; /* 1280 / 1680 */
+  }
+  .admin-root {
+    zoom: 1.3123;
+  }
+}
+@media (min-width: 1360px) {
+  body {
+    zoom: 0.81; /* 1360 / 1680 */
+  }
+  .admin-root {
+    zoom: 1.2346;
+  }
+}
+@media (min-width: 1440px) {
+  body {
+    zoom: 0.857; /* 1440 / 1680 */
+  }
+  .admin-root {
+    zoom: 1.1669;
+  }
+}
+@media (min-width: 1520px) {
+  body {
+    zoom: 0.905; /* 1520 / 1680 */
+  }
+  .admin-root {
+    zoom: 1.105;
+  }
+}
+@media (min-width: 1600px) {
+  body {
+    zoom: 0.952; /* 1600 / 1680 */
+  }
+  .admin-root {
+    zoom: 1.0504;
+  }
+}
+@media (min-width: 1680px) {
+  body {
+    zoom: 1; /* bu yerdan keyin siqish shart emas */
+  }
+  .admin-root {
+    zoom: 1;
+  }
+}
+
+/* zoom ichida `vw` birligi haqiqiy oynaga tegishli bo'lib qoladi, shuning
+   uchun bu yerda hero balandligi maketdagi aniq qiymatga qo'yiladi. */
+@media (min-width: 1280px) {
+  .hero-frame {
+    height: 1080px;
+    min-height: 0;
+    max-height: none;
+  }
+}
+
+/* Sarlavhadagi "CureLife —" uchun harflarga kesilgan feruza gradient.
+   Figma: linear-gradient(99.82deg, #32c8c4 5%, #97e1db 44%, #087e7d 90%) */
+@utility text-brand-gradient {
+  background-image: linear-gradient(
+    99.82deg,
+    var(--color-brand-400) 5%,
+    var(--color-brand-200) 44%,
+    var(--color-brand-600) 90%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Asosiy tugma foni. Figma: linear-gradient(to right, #32c8c4, #087e7d) */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(
+    to right,
+    var(--color-brand-400),
+    var(--color-brand-600)
+  );
+}
+
+/* Maketdagi "muzli" oq panel. Figma'da u 3 ta qatlam edi (fon gradienti +
+   blur + ichki soya) — bu yerda bitta elementga yig'ilgan. */
+@utility glass-panel {
+  background-image: linear-gradient(
+    144.5deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.42) 100%
+  );
+  backdrop-filter: blur(9px);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 24px 70px 0 rgba(0, 119, 118, 0.12),
+    inset 0 1px 0 1px rgba(255, 255, 255, 0.86);
+}
+
+/* Ro'yxatlardagi 01…05 raqam kvadrati */
+@utility num-chip {
+  background-image: linear-gradient(
+    145deg,
+    rgb(255, 255, 255) 0%,
+    rgba(221, 247, 243, 0.7) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Bo'lim ichidagi to'q feruza tugma. Figma 189:572 */
+@utility bg-cta-gradient {
+  background-image: linear-gradient(135deg, #18b9b5 0%, #087e7d 100%);
+}
+
+/* Ikonka uchun oq→feruza kvadrat (46×46). Figma 189:587 */
+@utility icon-tile {
+  background-image: linear-gradient(
+    145deg,
+    rgb(255, 255, 255) 0%,
+    rgba(221, 247, 243, 0.7) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 28px 0 rgba(0, 119, 118, 0.08);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Kapsula animatsiyasi (/about hero)
+
+   Rasm — fotosurat, kapsula alohida element emas. Shuning uchun to'liq 360°
+   aylantirilmaydi (barglar teskari bo'lib qolardi) — o'rniga sekin u yoqdan
+   bu yoqqa tebranish + suzish beriladi, bu "havoda muallaq" taassurotini
+   yaratadi. Burilganda burchaklar ochilib qolmasligi uchun rasm biroz
+   kattalashtirilgan (aspect 1.18 va ±4° uchun kamida 1.08 kerak).
+   ────────────────────────────────────────────────────────────────────── */
+@keyframes capsule-float {
+  0%,
+  100% {
+    transform: scale(1.12) rotate(-3.5deg) translate3d(0, 0.9%, 0);
+  }
+  50% {
+    transform: scale(1.16) rotate(3.5deg) translate3d(0, -1.3%, 0);
+  }
+}
+
+@utility capsule-float {
+  animation: capsule-float 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Harakatni kamaytirish so'ralgan bo'lsa — animatsiya o'chadi. */
+@media (prefers-reduced-motion: reduce) {
+  .capsule-float {
+    animation: none;
+    transform: scale(1.04);
+  }
+}
+
+/* Bo'limlar orasidagi ingichka ajratgich rangi */
+@utility border-hairline {
+  border-color: rgba(8, 126, 125, 0.14);
+}
+
+/*
+ * Maqola matni — rich-text muharrir (admin) va sayt sahifasida (o'qish)
+ * bir xil qoidalar bilan chiziladi, shuning uchun ikkalasida ham bir xil
+ * ko'rinadi. Nisbiy (em) o'lchamlar ishlatilgan — atrofdagi shrift
+ * o'lchamiga moslashadi (admin kichikroq, sayt kattaroq).
+ */
+@layer components {
+  .article-body {
+    color: inherit;
+  }
+  .article-body > *:first-child {
+    margin-top: 0;
+  }
+  .article-body > *:last-child {
+    margin-bottom: 0;
+  }
+  .article-body p {
+    margin: 0 0 1em;
+  }
+  .article-body h2,
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink-deep);
+    letter-spacing: -0.02em;
+    margin: 1.6em 0 0.6em;
+  }
+  .article-body h2 {
+    font-size: 1.4em;
+    line-height: 1.25;
+  }
+  .article-body h3 {
+    font-size: 1.15em;
+    line-height: 1.3;
+  }
+  .article-body strong {
+    font-weight: 700;
+    color: var(--color-ink-deep);
+  }
+  .article-body ul,
+  .article-body ol {
+    margin: 0 0 1em;
+    padding-left: 1.4em;
+  }
+  .article-body ul {
+    list-style: disc;
+  }
+  .article-body ol {
+    list-style: decimal;
+  }
+  .article-body li {
+    margin: 0 0 0.4em;
+  }
+  .article-body li p {
+    margin: 0;
+  }
+  .article-body blockquote {
+    margin: 0 0 1em;
+    padding: 0.2em 0 0.2em 1em;
+    border-left: 3px solid var(--color-accent);
+    color: var(--color-label);
+    font-style: italic;
+  }
+  .article-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .article-body a:hover {
+    color: var(--color-brand-700);
+  }
+  .article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 0.4em 0 1.2em;
+  }
+  .article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.2em;
+    font-size: 0.92em;
+  }
+  .article-body th,
+  .article-body td {
+    border: 1px solid rgba(8, 126, 125, 0.16);
+    padding: 0.5em 0.7em;
+    text-align: left;
+    vertical-align: top;
+  }
+  .article-body th {
+    background: var(--color-brand-100);
+    color: var(--color-ink-deep);
+    font-weight: 700;
+  }
+  .article-body p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+    color: var(--color-label);
+    opacity: 0.6;
+  }
+}

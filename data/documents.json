@@ -1,0 +1,30 @@
+[
+  {
+    "id": "legacy-p-novalife-certificate",
+    "productId": "p-novalife",
+    "type": "certificate",
+    "titleRu": "НоваЛайф Плюс",
+    "titleUz": "NovaLife Plus",
+    "documentNumber": "",
+    "issuedAt": "",
+    "expiresAt": "",
+    "fileUrl": "/images/certificate.jpg",
+    "previewImage": null,
+    "isPublished": true,
+    "sortOrder": 0
+  },
+  {
+    "id": "legacy-c-novalife",
+    "productId": "p-novalife",
+    "type": "certificate",
+    "titleRu": "NovaLife Plus",
+    "titleUz": "NovaLife Plus",
+    "documentNumber": "",
+    "issuedAt": "",
+    "expiresAt": "",
+    "fileUrl": "/images/about-certificate.png",
+    "previewImage": null,
+    "isPublished": true,
+    "sortOrder": 1
+  }
+]

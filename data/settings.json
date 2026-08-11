@@ -1,0 +1,19 @@
+{
+  "phone": "+998 97 144 04 44",
+  "email": "info@curelife.uz",
+  "address": "Toshkent, Zargarlik ko‘chasi 30V",
+  "addressRu": "Ташкент, ул. Заргарлик 30В",
+  "addressUz": "Toshkent, Zargarlik ko‘chasi 30V",
+  "hours": "Du–Ju · 09:00–18:00",
+  "hoursRu": "Пн–Пт · 09:00–18:00",
+  "hoursUz": "Du–Ju · 09:00–18:00",
+  "mapUrl": "https://yandex.uz/maps/-/CTSzqRY3",
+  "instagram": "",
+  "telegram": "",
+  "facebook": "",
+  "youtube": "",
+  "productCountOverride": 0,
+  "telegramNotify": true,
+  "emailNotify": true,
+  "analytics": false
+}
