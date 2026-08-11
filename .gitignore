@@ -44,3 +44,6 @@ next-env.d.ts
 # local tooling / scratch (not part of the app)
 /.claude/
 /tmp/
+
+.vercel
+.env*
