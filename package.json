@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "admin:password": "node scripts/set-admin-password.mjs"
+    "admin:password": "node scripts/set-admin-password.mjs",
+    "supabase:setup": "node scripts/setup-supabase.mjs",
+    "supabase:migrate": "node scripts/migrate-to-supabase.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.116.0",
+    "@supabase/supabase-js": "^2.112.3",
     "@tiptap/core": "^3.29.2",
     "@tiptap/extension-image": "^3.29.2",
     "@tiptap/extension-link": "^3.29.2",

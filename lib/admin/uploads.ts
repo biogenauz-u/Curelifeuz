@@ -1,21 +1,14 @@
 import { randomUUID } from "node:crypto";
-import { mkdir, unlink, writeFile } from "node:fs/promises";
-import path from "node:path";
+
+import { supabaseAdmin, UPLOADS_BUCKET } from "@/lib/admin/supabase";
 
 /**
  * Admin paneldan yuklangan fayllar (mahsulot rasmlari, sertifikat,
- * yo'riqnoma) `public/uploads/` ichida saqlanadi va saytga
- * `/uploads/<nom>` manzili orqali beriladi.
- *
- * ⚠️ Store'dagi JSON kabi, bu ham diskka yoziladi — doimiy diskli hostingda
- * (VPS/Docker) ishlaydi. Serverless muhitda S3 kabi obyekt saqlagichga
- * o'tkazish kerak bo'ladi.
+ * yo'riqnoma) Supabase Storage'ning `uploads` (ochiq) bucket'ida saqlanadi.
+ * `saveUploadedFile` to'liq ommaviy URL qaytaradi — u to'g'ridan-to'g'ri
+ * `<Image>`/`<a href>` da ishlatiladi, hech qanday qo'shimcha proksi kerak
+ * emas.
  */
-
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
-
-/** Saqlangan fayl URL'i shu prefiks bilan boshlanadi. */
-export const UPLOAD_PREFIX = "/uploads/";
 
 const MAX_BYTES = 10 * 1024 * 1024;
 
@@ -56,8 +49,9 @@ function detectType(bytes: Buffer): string | null {
 }
 
 /**
- * Yuklangan faylni saqlaydi va uning ommaviy URL'ini qaytaradi.
- * Xatolik bo'lsa foydalanuvchiga ko'rsatiladigan matn bilan `Error` tashlaydi.
+ * Yuklangan faylni Supabase Storage'ga saqlaydi va uning ommaviy URL'ini
+ * qaytaradi. Xatolik bo'lsa foydalanuvchiga ko'rsatiladigan matn bilan
+ * `Error` tashlaydi.
  */
 export async function saveUploadedFile(
   file: File,
@@ -79,28 +73,31 @@ export async function saveUploadedFile(
     );
   }
 
-  await mkdir(UPLOAD_DIR, { recursive: true });
   const name = `${randomUUID()}${EXTENSIONS[type]}`;
-  await writeFile(path.join(UPLOAD_DIR, name), bytes);
+  const { error } = await supabaseAdmin()
+    .storage.from(UPLOADS_BUCKET)
+    .upload(name, bytes, { contentType: type, upsert: false });
 
-  return UPLOAD_PREFIX + name;
+  if (error) throw new Error(`Faylni yuklab bo‘lmadi: ${error.message}`);
+
+  return supabaseAdmin().storage.from(UPLOADS_BUCKET).getPublicUrl(name).data.publicUrl;
 }
 
 /**
- * Eski faylni diskdan o'chiradi. Faqat o'zimiz yuklagan fayllarga tegadi —
- * `/images/...` dagi dizayn rasmlari saqlanib qoladi.
+ * Eski faylni Storage'dan o'chiradi. Faqat o'zimiz yuklagan fayllarga
+ * tegadi — `/images/...` dagi dizayn rasmlari (repo bilan birga keladi)
+ * saqlanib qoladi.
  */
 export async function deleteUploadedFile(url: string | null): Promise<void> {
-  if (!url || !url.startsWith(UPLOAD_PREFIX)) return;
+  if (!url) return;
 
-  const name = path.basename(url);
-  const target = path.join(UPLOAD_DIR, name);
-  // Papkadan chiqib ketishga urinishlarni to'sish.
-  if (path.dirname(target) !== UPLOAD_DIR) return;
+  const marker = `/storage/v1/object/public/${UPLOADS_BUCKET}/`;
+  const index = url.indexOf(marker);
+  if (index === -1) return;
 
-  try {
-    await unlink(target);
-  } catch {
-    // Fayl allaqachon yo'q — muammo emas.
-  }
+  const name = url.slice(index + marker.length);
+  if (!name) return;
+
+  const { error } = await supabaseAdmin().storage.from(UPLOADS_BUCKET).remove([name]);
+  if (error) console.error(`deleteUploadedFile(${name})`, error);
 }

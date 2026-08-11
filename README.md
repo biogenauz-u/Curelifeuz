@@ -321,17 +321,22 @@ qolgan tutuq belgisi `’`.
 
 ### Ma'lumot qayerda saqlanadi
 
-`data/` papkasidagi JSON fayllar: `products.json`, `messages.json`,
-`settings.json`, `pages.json`. Yozish **atomik** (avval `.tmp`, keyin
-`rename`) — server to'xtab qolsa ham fayl buzilmaydi. Fayl yo'q bo'lsa
-`lib/admin/store.ts` dagi standart qiymatlar ishlatiladi.
+Barcha ma'lumot **Supabase**da: bitta `app_data` jadvali (`key`/`value`),
+har bir "fayl" (`products.json`, `articles.json`, `messages.json`,
+`settings.json`, `pages.json`, `certificates.json`, `documents.json`) shu
+yerda bitta qator sifatida. `lib/admin/store.ts` o'qish/yozish funksiyalari
+(`readJson`/`writeJson`) shu jadval bilan ishlaydi — qolgan kod (normalizator,
+`getProducts` va h.k.) o'zgarmagan.
 
-Yuklangan rasmlar `public/uploads/` da yotadi.
+Yuklangan fayllar (rasm, sertifikat, yo'riqnoma) Supabase Storage'ning
+`uploads` (ochiq) bucket'ida — `lib/admin/uploads.ts`. Diskka umuman
+yozilmaydi, shuning uchun Vercel kabi serverless hostingda ham muammosiz
+ishlaydi.
 
-**⚠️ Hosting:** bu VPS/Docker kabi doimiy diskli muhitda ishlaydi. Vercel
-kabi serverless'da disk vaqtinchalik — u yerda `store.ts` dagi
-`readJson`/`writeJson` ni bazaga (Postgres, Supabase), `uploads.ts` ni esa
-obyekt saqlagichga (S3, Cloudinary) almashtirish kerak. Boshqa kod tegilmaydi.
+Sozlash: `.env.local` ga `SUPABASE_URL` va `SUPABASE_SERVICE_ROLE_KEY`
+qo'shiladi (Project Settings → API). Bir martalik: `supabase/schema.sql`
+(SQL Editor'da) → `npm run supabase:setup` (bucket) → `npm run
+supabase:migrate` (eski `data/*.json`/`public/uploads/` bo'lsa, ko'chiradi).
 
 ### Xavfsizlik
 

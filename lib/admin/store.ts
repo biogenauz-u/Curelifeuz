@@ -1,37 +1,39 @@
 import { randomUUID } from "node:crypto";
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
-import path from "node:path";
+
+import { APP_DATA_TABLE, supabaseAdmin } from "@/lib/admin/supabase";
 
 /**
- * Oddiy JSON saqlagich.
+ * Supabase asosidagi saqlagich.
  *
- * Loyihada baza yo'q edi, shuning uchun ma'lumot `data/` papkasidagi JSON
- * fayllarda saqlanadi. Kichik marketing sayti uchun yetarli va hech qanday
- * qo'shimcha xizmat talab qilmaydi.
+ * Har bir "fayl" (avval `data/*.json`) `app_data` jadvalida bitta qator:
+ * `key` — shu funksiyaga beriladigan nom (masalan `"products.json"`),
+ * `value` — butun JSON. Bu qolgan kodni (normalizatorlar, `getProducts` va
+ * h.k.) deyarli o'zgartirmasdan fayl tizimidan bazaga o'tkazish imkonini
+ * berdi — chunki `readJson`/`writeJson` ning imzosi bir xil qoldi.
  *
- * ⚠️ Yozish diskka boradi — bu VPS/Docker kabi doimiy diskli hostingda
- * ishlaydi. Vercel kabi serverless muhitda disk vaqtinchalik, u yerda
- * `readJson`/`writeJson` ni bazaga (Postgres, Supabase) almashtirish kerak.
+ * Bir martalik migratsiya: `scripts/migrate-to-supabase.mjs`.
  */
 
-const DATA_DIR = path.join(process.cwd(), "data");
-
 async function readJson<T>(file: string, fallback: T): Promise<T> {
-  try {
-    const raw = await readFile(path.join(DATA_DIR, file), "utf8");
-    return JSON.parse(raw) as T;
-  } catch {
+  const { data, error } = await supabaseAdmin()
+    .from(APP_DATA_TABLE)
+    .select("value")
+    .eq("key", file)
+    .maybeSingle();
+
+  if (error) {
+    console.error(`readJson(${file})`, error);
     return fallback;
   }
+  return (data?.value as T) ?? fallback;
 }
 
-/** Atomik yozish: avval vaqtinchalik faylga, keyin nomini almashtiramiz. */
 async function writeJson(file: string, data: unknown): Promise<void> {
-  await mkdir(DATA_DIR, { recursive: true });
-  const target = path.join(DATA_DIR, file);
-  const tmp = `${target}.${randomUUID()}.tmp`;
-  await writeFile(tmp, JSON.stringify(data, null, 2) + "\n", "utf8");
-  await rename(tmp, target);
+  const { error } = await supabaseAdmin()
+    .from(APP_DATA_TABLE)
+    .upsert({ key: file, value: data });
+
+  if (error) throw new Error(`writeJson(${file}): ${error.message}`);
 }
 
 /* ── Mahsulotlar ──────────────────────────────────────────────────────── */

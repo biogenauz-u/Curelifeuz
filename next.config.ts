@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "48mb",
     },
   },
+  images: {
+    // Yuklangan fayllar endi Supabase Storage'da — next/image shu domendan
+    // kelgan rasmlarni optimallashtirishi uchun ruxsat berilishi kerak.
+    remotePatterns: [
+      { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
+    ],
+  },
 };
 
 export default nextConfig;
