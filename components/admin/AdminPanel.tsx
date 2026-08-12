@@ -11,6 +11,7 @@ import { ArticlesView } from "@/components/admin/views/Articles";
 import { CertificatesView } from "@/components/admin/views/Certificates";
 import { ProductsView } from "@/components/admin/views/Products";
 import { SettingsViewPanel } from "@/components/admin/views/SettingsView";
+import { StatisticsView } from "@/components/admin/views/Statistics";
 import type {
   Article,
   Certificate,
@@ -18,11 +19,13 @@ import type {
   PagesMeta,
   Product,
   Settings,
+  VisitStats,
 } from "@/lib/admin/store";
 import type { View } from "@/lib/admin/views";
 
 const NAV: Array<{ id: View; label: string; icon: string }> = [
   { id: "dashboard", label: "Boshqaruv paneli", icon: "⌂" },
+  { id: "statistics", label: "Statistika", icon: "▥" },
   { id: "products", label: "Mahsulotlar", icon: "◇" },
   { id: "articles", label: "Maqolalar", icon: "✎" },
   { id: "certificates", label: "Sertifikatlar", icon: "✓" },
@@ -71,6 +74,7 @@ export function AdminPanel({
   messages,
   settings,
   pages,
+  visits,
   initialView = "dashboard",
 }: {
   products: Product[];
@@ -79,6 +83,7 @@ export function AdminPanel({
   messages: Message[];
   settings: Settings;
   pages: PagesMeta;
+  visits: VisitStats;
   initialView?: View;
 }) {
   const [view, setView] = useState<View>(initialView);
@@ -340,6 +345,14 @@ export function AdminPanel({
             </section>
           )}
 
+          {view === "statistics" && (
+            <StatisticsView
+              visits={visits}
+              articles={articles}
+              products={products}
+              messages={messages}
+            />
+          )}
           {view === "products" && <ProductsView products={products} />}
           {view === "articles" && <ArticlesView articles={articles} />}
           {view === "certificates" && (

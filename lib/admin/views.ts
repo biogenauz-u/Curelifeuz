@@ -4,6 +4,7 @@
  */
 export type View =
   | "dashboard"
+  | "statistics"
   | "products"
   | "articles"
   | "certificates"
@@ -13,6 +14,7 @@ export type View =
 
 const VIEWS: View[] = [
   "dashboard",
+  "statistics",
   "products",
   "articles",
   "certificates",

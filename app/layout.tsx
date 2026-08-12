@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 
 import { JsonLd } from "@/components/seo/JsonLd";
+import { VisitTracker } from "@/components/analytics/VisitTracker";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { SiteSettingsProvider } from "@/components/providers/SiteSettingsProvider";
 import { getSettings } from "@/lib/admin/store";
@@ -63,6 +64,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         {/* Sayt bo'yicha bir marta: kompaniya va veb-sayt haqida tuzilmali ma'lumot. */}
         <JsonLd data={organizationSchema(settings)} />
         <JsonLd data={websiteSchema(locale)} />
+        <VisitTracker />
         <LanguageProvider initialLocale={locale}>
           <SiteSettingsProvider settings={settings}>
             {children}

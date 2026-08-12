@@ -684,6 +684,48 @@ export async function saveSettings(settings: Settings): Promise<void> {
   await writeJson("settings.json", settings);
 }
 
+/* ── Tashriflar (statistika) ──────────────────────────────────────────── */
+
+export type VisitEvent = {
+  path: string;
+  locale: "ru" | "uz";
+  device: "mobile" | "tablet" | "desktop";
+  browser: string;
+  os: string;
+  /** Vercel Edge Network beradigan IP-asosidagi mamlakat/shahar (bo'lmasa `null`). */
+  country: string | null;
+  city: string | null;
+  /** Tashqi manba domeni. O'z sayti ichidagi o'tishlar/`null` — to'g'ridan-to'g'ri. */
+  referrerHost: string | null;
+  createdAt: string;
+};
+
+export type VisitStats = {
+  /** Barcha vaqtdagi umumiy son — `events` qisqartirilganda ham kamaymaydi. */
+  total: number;
+  events: VisitEvent[];
+};
+
+const VISITS_SEED: VisitStats = { total: 0, events: [] };
+/** Fayl cheksiz o'smasligi uchun oxirgi shuncha hodisa saqlanadi. */
+const MAX_VISIT_EVENTS = 5000;
+
+export async function getVisitStats(): Promise<VisitStats> {
+  return readJson<VisitStats>("visits.json", VISITS_SEED);
+}
+
+/** Har bir sahifa tashrifida (`VisitTracker`) chaqiriladi. */
+export async function recordVisit(
+  input: Omit<VisitEvent, "createdAt">,
+): Promise<void> {
+  const current = await readJson<VisitStats>("visits.json", VISITS_SEED);
+  const event: VisitEvent = { ...input, createdAt: new Date().toISOString() };
+  await writeJson("visits.json", {
+    total: current.total + 1,
+    events: [...current.events, event].slice(-MAX_VISIT_EVENTS),
+  });
+}
+
 /* ── Sahifa meta ma'lumotlari ─────────────────────────────────────────── */
 
 export type PageMeta = { title: string; description: string };

@@ -8,6 +8,7 @@ import {
   getPagesMeta,
   getProducts,
   getSettings,
+  getVisitStats,
 } from "@/lib/admin/store";
 import { parseView } from "@/lib/admin/views";
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default async function AdminPage({
   searchParams,
 }: PageProps<"/admin">) {
-  const [{ view }, products, articles, certificates, messages, settings, pages] =
+  const [{ view }, products, articles, certificates, messages, settings, pages, visits] =
     await Promise.all([
       searchParams,
       getProducts(),
@@ -29,6 +30,7 @@ export default async function AdminPage({
       getMessages(),
       getSettings(),
       getPagesMeta(),
+      getVisitStats(),
     ]);
 
   return (
@@ -39,6 +41,7 @@ export default async function AdminPage({
       messages={messages}
       settings={settings}
       pages={pages}
+      visits={visits}
       initialView={parseView(view)}
     />
   );
