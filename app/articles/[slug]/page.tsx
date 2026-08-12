@@ -7,10 +7,12 @@ import { ArticleCard, excerpt, formatDate } from "@/components/articles/ArticleC
 import { ViewCounter } from "@/components/articles/ViewCounter";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { getArticles, type Article } from "@/lib/admin/store";
+import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { getArticles, getProducts, type Article } from "@/lib/admin/store";
 import { plural, VIEWS_FORMS } from "@/lib/i18n/plural";
 import { getServerDictionary, resolveLocale } from "@/lib/i18n/server";
-import { CONTAINER } from "@/lib/utils";
+import { CONTAINER, productName } from "@/lib/utils";
 
 async function findArticle(slug: string): Promise<Article | undefined> {
   return (await getArticles()).find((a) => a.slug === slug);
@@ -34,17 +36,23 @@ export default async function ArticlePage({
   params,
 }: PageProps<"/articles/[slug]">) {
   const { slug } = await params;
-  const [article, dict, locale, all] = await Promise.all([
+  const [article, dict, locale, all, products] = await Promise.all([
     findArticle(slug),
     getServerDictionary(),
     resolveLocale(),
     getArticles(),
+    getProducts(),
   ]);
   if (!article) notFound();
 
   const a = dict.articles;
   const text = article[locale];
   const others = all.filter((x) => x.id !== article.id).slice(0, 3);
+
+  const relatedProduct = products.find(
+    (p) => p.id === article.relatedProductId && p.visible,
+  );
+  const relatedText = relatedProduct?.[locale];
 
   return (
     <>
@@ -86,6 +94,47 @@ export default async function ArticlePage({
               className="article-body mt-10 text-[15px] leading-[1.8] text-body"
               dangerouslySetInnerHTML={{ __html: text.body }}
             />
+
+            {relatedProduct && relatedText && (
+              <div className="mt-14 overflow-hidden rounded-[30px] bg-white shadow-[0_24px_70px_rgba(8,126,125,.08)] sm:grid sm:grid-cols-[260px_1fr] sm:items-stretch">
+                <div className="relative h-[200px] bg-[#eefaf9] sm:h-auto">
+                  {relatedProduct.image ? (
+                    <Image
+                      src={relatedProduct.image}
+                      alt={productName(relatedProduct, locale)}
+                      fill
+                      sizes="(max-width:640px) 100vw, 260px"
+                      className="object-contain p-7"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 grid place-items-center px-4">
+                      <p className="text-center font-display text-[20px] font-bold text-ink-deep/15">
+                        {productName(relatedProduct, locale)}
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <div className="p-7 sm:p-9">
+                  <SectionLabel>{a.relatedProduct.label}</SectionLabel>
+                  <h2 className="mt-5 font-display text-[26px] leading-[1.1] font-bold tracking-[-.03em] sm:text-[32px]">
+                    {a.relatedProduct.title}{" "}
+                    <span className="text-accent">{a.relatedProduct.titleAccent}</span>
+                  </h2>
+                  <p className="mt-4 font-display text-[19px] font-bold text-ink-deep">
+                    {productName(relatedProduct, locale)}
+                  </p>
+                  <p className="mt-2 line-clamp-2 text-[13px] leading-6 text-body">
+                    {relatedText.description}
+                  </p>
+                  <Link
+                    href={`/products/${relatedProduct.slug}`}
+                    className="bg-brand-gradient mt-6 inline-flex h-11 items-center gap-4 rounded-pill px-5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90"
+                  >
+                    {a.relatedProduct.cta} <ArrowRightIcon className="size-4" />
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </article>
 

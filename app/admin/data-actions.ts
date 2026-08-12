@@ -355,6 +355,7 @@ export async function saveArticle(
     slug,
     image,
     views: Number.isFinite(views) && views >= 0 ? views : (existing?.views ?? 0),
+    relatedProductId: read("relatedProductId") || null,
     publishedAt: read("publishedAt") || new Date().toISOString().slice(0, 10),
     ru: { title: ruTitle, body: sanitizeArticleBody(read("ru_body")) },
     uz: { title: uzTitle, body: sanitizeArticleBody(read("uz_body")) },

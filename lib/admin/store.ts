@@ -491,6 +491,8 @@ export type Article = {
   views: number;
   /** ISO sana: "2026-08-08". */
   publishedAt: string;
+  /** Maqola oxirida ko'rsatiladigan mahsulot. Bo'sh bo'lsa hech narsa chiqmaydi. */
+  relatedProductId: string | null;
   ru: ArticleLocale;
   uz: ArticleLocale;
 };
@@ -501,6 +503,7 @@ const ARTICLES_SEED: Article[] = [
     slug: "kak-chitat-sertifikat",
     image: null,
     views: 0,
+    relatedProductId: null,
     publishedAt: "2026-07-14",
     ru: {
       title: "Как читать сертификат продукта",
@@ -516,6 +519,7 @@ const ARTICLES_SEED: Article[] = [
     slug: "sostav-na-upakovke",
     image: null,
     views: 0,
+    relatedProductId: null,
     publishedAt: "2026-06-30",
     ru: {
       title: "Что означают цифры в составе",
@@ -531,6 +535,7 @@ const ARTICLES_SEED: Article[] = [
     slug: "kak-hranit",
     image: null,
     views: 0,
+    relatedProductId: null,
     publishedAt: "2026-06-12",
     ru: {
       title: "Как хранить биодобавки дома",
@@ -546,6 +551,7 @@ const ARTICLES_SEED: Article[] = [
     slug: "kogda-nuzhen-vrach",
     image: null,
     views: 0,
+    relatedProductId: null,
     publishedAt: "2026-05-28",
     ru: {
       title: "Когда стоит посоветоваться с врачом",
@@ -585,6 +591,7 @@ function normalizeArticle(input: Article): Article {
     ...input,
     image: input.image ?? null,
     views: Number.isFinite(input.views) ? Math.max(0, Math.trunc(input.views)) : 0,
+    relatedProductId: str((input as { relatedProductId?: unknown }).relatedProductId) || null,
     ru: { title: str(input.ru?.title), body: ensureHtmlBody(str(input.ru?.body)) },
     uz: { title: str(input.uz?.title), body: ensureHtmlBody(str(input.uz?.body)) },
   };

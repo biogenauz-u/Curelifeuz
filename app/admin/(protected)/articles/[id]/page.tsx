@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ArticleFormPage } from "@/components/admin/ArticleFormPage";
-import { getArticles } from "@/lib/admin/store";
+import { getArticles, getProducts } from "@/lib/admin/store";
 
 export const metadata: Metadata = {
   title: "Maqolani tahrirlash · CureLife Admin",
@@ -13,8 +13,9 @@ export default async function EditArticlePage({
   params,
 }: PageProps<"/admin/articles/[id]">) {
   const { id } = await params;
-  const article = (await getArticles()).find((a) => a.id === id);
+  const [articles, products] = await Promise.all([getArticles(), getProducts()]);
+  const article = articles.find((a) => a.id === id);
   if (!article) notFound();
 
-  return <ArticleFormPage article={article} isNew={false} />;
+  return <ArticleFormPage article={article} products={products} isNew={false} />;
 }

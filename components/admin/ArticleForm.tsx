@@ -8,7 +8,7 @@ import { useFormStatus } from "react-dom";
 import { generateArticle } from "@/app/admin/ai-article-actions";
 import { saveArticle, type ArticleFormState } from "@/app/admin/data-actions";
 import { translateArticle } from "@/app/admin/translate-article-actions";
-import type { Article, ArticleLocale } from "@/lib/admin/store";
+import type { Article, ArticleLocale, Product } from "@/lib/admin/store";
 
 // TipTap DOM'ga bog'liq — serverda render qilinmaydi.
 const RichTextEditor = dynamic(
@@ -107,9 +107,11 @@ function SubmitButton({ isNew }: { isNew: boolean }) {
 
 export function ArticleForm({
   article,
+  products,
   isNew,
 }: {
   article: Article;
+  products: Product[];
   isNew: boolean;
 }) {
   const [state, formAction] = useActionState<ArticleFormState, FormData>(
@@ -121,6 +123,7 @@ export function ArticleForm({
   const [uz, setUz] = useState<ArticleLocale>(article.uz);
   const [views, setViews] = useState(String(article.views));
   const [publishedAt, setPublishedAt] = useState(article.publishedAt);
+  const [relatedProductId, setRelatedProductId] = useState(article.relatedProductId ?? "");
 
   const [sourceUrl, setSourceUrl] = useState("");
   const [generating, setGenerating] = useState(false);
@@ -319,6 +322,26 @@ export function ArticleForm({
               onChange={setViews}
               hint="Maqola ochilganda avtomatik oshadi."
             />
+            <label className="block text-[9px] font-bold tracking-[.08em] text-label uppercase">
+              Tegishli mahsulot
+              <select
+                name="relatedProductId"
+                value={relatedProductId}
+                onChange={(e) => setRelatedProductId(e.target.value)}
+                className={INPUT}
+              >
+                <option value="">— Tanlanmagan —</option>
+                {products.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+              <span className="mt-2 block text-[9px] font-normal normal-case tracking-normal text-body">
+                Tanlansa, maqola oxirida shu mahsulotni tavsiya qiluvchi karta chiqadi.
+                Bo‘sh qoldirilsa, maqola hozirgidek oddiy holida qoladi.
+              </span>
+            </label>
           </div>
         </section>
 

@@ -213,6 +213,8 @@ export type Dictionary = {
     listTitle: string;
     listIntro: string;
     meta: { title: string; description: string };
+    /** Admin maqolaga mahsulot bog'lagan bo'lsa, matn oxirida chiqadigan karta. */
+    relatedProduct: { label: string; title: string; titleAccent: string; cta: string };
   };
   /**
    * Mahsulot pasporti (`/products/<slug>`) — faqat STATIK matnlar.
@@ -630,6 +632,12 @@ const ru: Dictionary = {
     meta: {
       title: "Статьи — CureLife",
       description: "Материалы о составе, применении, хранении продуктов и о том, когда стоит обратиться к специалисту.",
+    },
+    relatedProduct: {
+      label: "ПО ЭТОЙ ТЕМЕ",
+      title: "Продукт, который",
+      titleAccent: "может пригодиться.",
+      cta: "Открыть паспорт продукта",
     },
   },
   productPage: {
@@ -1076,6 +1084,12 @@ const uz: Dictionary = {
     meta: {
       title: "Maqolalar — CureLife",
       description: "Mahsulot tarkibi, qo‘llanishi, saqlanishi va qachon mutaxassisga murojaat qilish haqidagi materiallar.",
+    },
+    relatedProduct: {
+      label: "SHU MAVZU BO‘YICHA",
+      title: "Sizga foydali bo‘lishi",
+      titleAccent: "mumkin bo‘lgan mahsulot.",
+      cta: "Mahsulot pasportini ko‘rish",
     },
   },
   productPage: {

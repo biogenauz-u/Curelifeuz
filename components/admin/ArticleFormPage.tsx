@@ -2,14 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ArticleForm } from "@/components/admin/ArticleForm";
-import type { Article } from "@/lib/admin/store";
+import type { Article, Product } from "@/lib/admin/store";
 
 /** Maqola qo'shish/tahrirlash uchun alohida sahifa qobig'i. */
 export function ArticleFormPage({
   article,
+  products,
   isNew,
 }: {
   article: Article;
+  products: Product[];
   isNew: boolean;
 }) {
   return (
@@ -41,7 +43,7 @@ export function ArticleFormPage({
       </header>
 
       <main className="p-4 sm:p-7 lg:p-10">
-        <ArticleForm article={article} isNew={isNew} />
+        <ArticleForm article={article} products={products} isNew={isNew} />
       </main>
     </div>
   );
