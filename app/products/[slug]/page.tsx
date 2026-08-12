@@ -144,6 +144,13 @@ export default async function ProductPassportPage({
   const [usageTitle, usageAccent] = splitAccent(d.usageTitle);
   const heroImage = product.detailImage ?? product.image;
 
+  // Chiqarilish shakli (masalan "Саше"/"sashe") kompozitsiya jadvalidagi
+  // birlik yorlig'ini belgilaydi — faqat shu turdagi mahsulotlarda
+  // "капсула" o'rniga "саше" ko'rsatiladi.
+  const compositionUnitLabel = /саше|sashe/i.test(text.stats[0] ?? "")
+    ? t.composition.perSachet
+    : t.composition.perCapsule;
+
   // "Xomashyo (fakt)"/"Ishlab chiqaruvchi (fakt)" bo'sh qoldirilsa, "Kelib
   // chiqishi" bo'limidagi ma'lumotdan (mahalliy yoki import turiga qarab)
   // avtomatik olinadi — admin bir xil ma'lumotni ikki joyga yozmasin.
@@ -271,7 +278,7 @@ export default async function ProductPassportPage({
             </div>
 
             <div>
-              <div className="relative mx-auto grid aspect-[1.18] max-w-[640px] place-items-center overflow-hidden rounded-[38px] bg-white shadow-[0_32px_90px_rgba(8,126,125,.12)]">
+              <div className="relative mx-auto grid aspect-[1.18] max-w-[640px] place-items-center overflow-hidden rounded-[38px] shadow-[0_32px_90px_rgba(8,126,125,.12)]">
                 {heroImage ? (
                   <Image
                     src={heroImage}
@@ -345,7 +352,7 @@ export default async function ProductPassportPage({
                         {item.name}
                       </p>
                       <p className="mt-1 text-[10px] text-body">
-                        {t.composition.perCapsule}
+                        {compositionUnitLabel}
                       </p>
                     </div>
                     <strong className="ml-auto font-display text-[18px] text-accent">

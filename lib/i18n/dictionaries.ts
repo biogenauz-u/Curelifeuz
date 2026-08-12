@@ -226,7 +226,7 @@ export type Dictionary = {
     factLabels: [string, string, string, string];
     composition: {
       label: string; title: string; titleAccent: string;
-      intro: string; perCapsule: string;
+      intro: string; perCapsule: string; perSachet: string;
     };
     usage: { label: string; daily: string };
     /** `defaultItems` — mahsulotda "Qabuldan oldin" to'ldirilmagan bo'lsa ko'rsatiladigan umumiy BAD ogohlantirishlari. */
@@ -660,6 +660,7 @@ const ru: Dictionary = {
       titleAccent: "каждого компонента.",
       intro: "Ниже приведены основные компоненты, указанные в инструкции. Полный состав и вспомогательные вещества смотрите в инструкции к продукту.",
       perCapsule: "Количество в одной капсуле",
+      perSachet: "Количество в одном саше",
     },
     usage: { label: "СПОСОБ ПРИМЕНЕНИЯ", daily: "ежедневно" },
     before: {
@@ -1119,6 +1120,7 @@ const uz: Dictionary = {
       titleAccent: "aniq miqdorini biling.",
       intro: "Quyida yo‘riqnomada ko‘rsatilgan asosiy komponentlar keltirilgan. To‘liq tarkib va yordamchi moddalarni mahsulot yo‘riqnomasidan qarang.",
       perCapsule: "Bitta kapsuladagi miqdori",
+      perSachet: "Bitta sashedagi miqdori",
     },
     usage: { label: "QO‘LLASH USULI", daily: "har kuni" },
     before: {
