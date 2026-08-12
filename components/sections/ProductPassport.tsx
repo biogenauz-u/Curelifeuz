@@ -52,9 +52,13 @@ export function ProductPassport({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
   const tabsRef = useRef<Array<HTMLButtonElement | null>>([]);
 
-  if (!products.length) return null;
+  // Bu bo'lim 4 ustunli katakka mo'ljallangan (Figma) — ko'proq mahsulot
+  // bo'lsa ham shu yerda faqat birinchi 4 tasi ko'rsatiladi. Qolganlari
+  // "/products" to'liq katalogida ko'rinadi.
+  const items = products.slice(0, 4);
+  if (!items.length) return null;
 
-  const product = products[Math.min(active, products.length - 1)];
+  const product = items[Math.min(active, items.length - 1)];
   const text = product[locale];
   const title = productName(product, locale);
   const origin = text.detail.origin;
@@ -80,7 +84,7 @@ export function ProductPassport({ products }: { products: Product[] }) {
 
   /** Klaviatura: ←/→ tab almashtiradi, Home/End chetlarga o'tadi. */
   const onKeyDown = (e: React.KeyboardEvent) => {
-    const last = products.length - 1;
+    const last = items.length - 1;
     const next =
       e.key === "ArrowRight" ? (active === last ? 0 : active + 1)
       : e.key === "ArrowLeft" ? (active === 0 ? last : active - 1)
@@ -117,7 +121,7 @@ export function ProductPassport({ products }: { products: Product[] }) {
           onKeyDown={onKeyDown}
           className="mt-10 -mx-4 flex snap-x gap-[10px] overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-[48px] lg:grid-cols-4"
         >
-          {products.map((p, i) => {
+          {items.map((p, i) => {
             const selected = i === active;
             return (
               <button
