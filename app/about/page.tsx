@@ -7,10 +7,10 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { getCertificates } from "@/lib/admin/store";
-import { getServerDictionary } from "@/lib/i18n/server";
+import { getProducts, type Certificate } from "@/lib/admin/store";
+import { getServerDictionary, resolveLocale } from "@/lib/i18n/server";
 import { resolvePageMeta } from "@/lib/i18n/page-meta";
-import { CONTAINER, CONTAINER_WIDE } from "@/lib/utils";
+import { CONTAINER, CONTAINER_WIDE, productName } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { meta } = (await getServerDictionary()).aboutPage;
@@ -18,11 +18,23 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const [dict, certificates] = await Promise.all([
+  const [dict, products, locale] = await Promise.all([
     getServerDictionary(),
-    getCertificates(),
+    getProducts(),
+    resolveLocale(),
   ]);
   const a = dict.aboutPage;
+
+  // Sertifikatlar galereyasi mahsulotlarning o'z sertifikatidan olinadi —
+  // admin har birini mahsulot formasida ("Sertifikat" fayl maydoni) yuklaydi,
+  // shu bilan ikki joyga alohida yuklash shart bo'lmaydi.
+  const certificates: Certificate[] = products
+    .filter((p) => p.visible && p.certificate)
+    .map((p) => ({
+      id: p.id,
+      title: productName(p, locale),
+      file: p.certificate as string,
+    }));
 
   return (
     <>

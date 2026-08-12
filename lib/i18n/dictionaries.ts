@@ -83,7 +83,7 @@ export type Dictionary = {
     body: string;
     steps: [Card, Card, Card, Card];
   };
-  video: { play: string; alt: string };
+  video: { play: string; alt: string; caption: string; close: string };
   cta: { label: string; title: string; body: string };
   footer: {
     menu: { products: string; about: string; certificates: string; articles: string };
@@ -405,6 +405,8 @@ const ru: Dictionary = {
   video: {
     play: "Смотреть видео о производстве",
     alt: "Производственная площадка Avitale",
+    caption: "Avitale — наш партнёр-производитель в Германии",
+    close: "Закрыть видео",
   },
   cta: {
     label: "09 / Финальный призыв",
@@ -857,6 +859,8 @@ const uz: Dictionary = {
   video: {
     play: "Ishlab chiqarish haqidagi videoni ko‘rish",
     alt: "Avitale ishlab chiqarish maydonchasi",
+    caption: "Avitale — Germaniyadagi hamkor ishlab chiqaruvchimiz",
+    close: "Videoni yopish",
   },
   cta: {
     label: "09 / Yakuniy chaqiruv",

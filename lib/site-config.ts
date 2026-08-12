@@ -20,7 +20,7 @@ export const SOCIAL_LINKS: Record<
  * `/videos/...` fayli). `null` bo'lsa poster rasm statik ko'rsatiladi va
  * ishlamaydigan "play" tugmasi chizilmaydi.
  */
-export const VIDEO_URL: string | null = null;
+export const VIDEO_URL: string | null = "https://youtu.be/NM53zDvmAuU";
 
 /**
  * Sertifikatlar bo'limining yagona manzili. Haqiqiy hujjatlar `/about`
