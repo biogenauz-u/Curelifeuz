@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getProducts, type Certificate } from "@/lib/admin/store";
+import { withLocale } from "@/lib/i18n/config";
 import { getServerDictionary, resolveLocale } from "@/lib/i18n/server";
 import { resolvePageMeta } from "@/lib/i18n/page-meta";
 import { CONTAINER, CONTAINER_WIDE, productName } from "@/lib/utils";
@@ -259,13 +260,13 @@ export default async function AboutPage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="/contact"
+                  href={withLocale(locale, "/contact")}
                   className="bg-brand-gradient inline-flex h-12 items-center gap-4 rounded-[14px] px-5 text-[12px] font-bold text-white"
                 >
                   {a.contact.primary} <ArrowRightIcon className="size-4" />
                 </a>
                 <Link
-                  href="/products"
+                  href={withLocale(locale, "/products")}
                   className="inline-flex h-12 items-center rounded-[14px] border border-brand-200/50 px-5 text-[12px] font-bold"
                 >
                   {a.contact.secondary}

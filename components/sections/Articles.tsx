@@ -4,6 +4,7 @@ import { ArticleCard } from "@/components/articles/ArticleCard";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getArticles } from "@/lib/admin/store";
+import { withLocale } from "@/lib/i18n/config";
 import { getServerDictionary, resolveLocale } from "@/lib/i18n/server";
 import { CONTAINER, H2, H2_LG, SECTION_Y } from "@/lib/utils";
 
@@ -33,7 +34,7 @@ export async function Articles() {
               {a.intro}
             </p>
             <Link
-              href="/articles"
+              href={withLocale(locale, "/articles")}
               className="mt-5 inline-flex h-11 items-center gap-3 rounded-pill border border-brand-200 bg-white px-5 text-[13px] font-semibold text-brand-700"
             >
               {a.all} <ArrowRightIcon className="size-4" />

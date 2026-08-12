@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FileIcon, MapIcon, ShieldIcon } from "@/components/ui/icons";
+import { withLocale } from "@/lib/i18n/config";
 import { CERTIFICATES_HREF } from "@/lib/site-config";
 import { BODY, CONTAINER, H2, H2_LG, SECTION_Y } from "@/lib/utils";
 
@@ -25,7 +26,7 @@ const CERTS = [
 
 /** Figma node 189:566 — "05 / Доверие". */
 export function Trust({ certificates }: { certificates: string[] }) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   // Haqiqiy (rasm formatidagi) mahsulot sertifikatlari — yetmasa yoki
   // umuman bo'lmasa, dizayndagi namunaviy rasm bilan to'ldiriladi.
@@ -53,7 +54,7 @@ export function Trust({ certificates }: { certificates: string[] }) {
               <p className={`${BODY} mt-[26px]`}>{t.trust.body}</p>
 
               <a
-                href={CERTIFICATES_HREF}
+                href={withLocale(locale, CERTIFICATES_HREF)}
                 className="bg-cta-gradient mt-[36px] inline-flex h-[50px] items-center gap-[14px] rounded-[16px] px-[20px] text-[14px] font-bold text-white shadow-[0_12px_13px_rgba(11,167,166,0.24)] transition-opacity hover:opacity-90"
               >
                 {t.trust.cta}

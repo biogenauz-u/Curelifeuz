@@ -5,12 +5,15 @@ import type { Metadata } from "next";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FileIcon, MapIcon, PillIcon, ShieldIcon } from "@/components/ui/icons";
 import { getProducts, type Product } from "@/lib/admin/store";
+import { withLocale } from "@/lib/i18n/config";
+import { SITE_URL, resolvePageMeta } from "@/lib/i18n/page-meta";
 import { getServerDictionary, resolveLocale } from "@/lib/i18n/server";
-import { resolvePageMeta } from "@/lib/i18n/page-meta";
+import { breadcrumbSchema, productSchema } from "@/lib/seo/schema";
 import { CONTAINER, productName } from "@/lib/utils";
 
 /**
@@ -117,6 +120,7 @@ export async function generateMetadata({
   return resolvePageMeta(`/products/${slug}`, {
     title: `${productName(product, locale)} — CureLife`,
     description: text.description,
+    image: product.detailImage ?? product.image,
   });
 }
 
@@ -186,8 +190,18 @@ export default async function ProductPassportPage({
   // umumiy bo'lgan standart ogohlantirishlar ko'rsatiladi (lug'atdan).
   const beforeItems = d.before.length ? d.before : t.before.defaultItems;
 
+  const pageUrl = `${SITE_URL}/${locale}/products/${slug}`;
+
   return (
     <>
+      <JsonLd data={productSchema(locale, product, text, title, pageUrl)} />
+      <JsonLd
+        data={breadcrumbSchema(locale, [
+          { name: dict.nav.home, path: "/" },
+          { name: dict.nav.products, path: "/products" },
+          { name: title, path: `/products/${slug}` },
+        ])}
+      />
       <main className="overflow-hidden bg-[#f8ffff] text-ink-deep">
         <section
           id="hero"
@@ -197,7 +211,7 @@ export default async function ProductPassportPage({
 
           <div className={`${CONTAINER} relative z-10 pt-8`}>
             <Link
-              href="/products"
+              href={withLocale(locale, "/products")}
               className="inline-flex items-center gap-2 text-[12px] font-semibold text-body transition-colors hover:text-accent"
             >
               <span aria-hidden>&larr;</span> {t.back}
@@ -666,7 +680,7 @@ export default async function ProductPassportPage({
                         {[rt.stats[0], rt.stats[1]].filter(Boolean).join(" · ")}
                       </p>
                       <Link
-                        href={`/products/${r.slug}`}
+                        href={withLocale(locale, `/products/${r.slug}`)}
                         className="mt-5 flex items-center justify-between rounded-pill border border-brand-200 px-4 py-3 text-[11px] font-semibold text-brand-700 transition-colors hover:bg-brand-100/50"
                       >
                         {t.related.cta} <ArrowRightIcon className="size-4" />

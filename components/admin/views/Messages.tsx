@@ -54,7 +54,7 @@ export function MessagesView({ messages }: { messages: Message[] }) {
             yerda paydo bo‘ladi.
           </p>
           <a
-            href="/contact"
+            href="/uz/contact"
             target="_blank"
             rel="noreferrer"
             className="mt-5 rounded-[12px] border border-[#dce9e8] px-5 py-3 text-[10px] font-bold"

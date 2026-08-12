@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import type { Article } from "@/lib/admin/store";
-import type { Locale } from "@/lib/i18n/config";
+import { withLocale, type Locale } from "@/lib/i18n/config";
 import { plural, VIEWS_FORMS } from "@/lib/i18n/plural";
 
 /** "2026-07-14" → "14.07.2026" */
@@ -67,7 +67,7 @@ export function ArticleCard({
           {excerpt(text.body, 190)}
         </p>
         <Link
-          href={`/articles/${article.slug}`}
+          href={withLocale(locale, `/articles/${article.slug}`)}
           className="mt-auto inline-flex min-h-11 items-center gap-3 pt-5 text-[13px] font-bold text-accent transition-colors hover:text-brand-700"
         >
           {labels.readMore} <ArrowRightIcon className="size-4" />

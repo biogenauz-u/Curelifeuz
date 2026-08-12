@@ -5,11 +5,12 @@ import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { withLocale } from "@/lib/i18n/config";
 import { BODY, CONTAINER, H2, H2_LG, SECTION_Y } from "@/lib/utils";
 
 /** Figma node 189:860 — "10 / Финальный призыв". */
 export function FinalCta() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <section
@@ -28,7 +29,7 @@ export function FinalCta() {
             <p className={`${BODY} mt-[21px] max-w-[537px]`}>{t.cta.body}</p>
 
             <a
-              href="/products"
+              href={withLocale(locale, "/products")}
               className="bg-cta-gradient mt-[35px] inline-flex h-[50px] items-center gap-[14px] rounded-[16px] px-[20px] text-[16px] font-bold text-white shadow-[0_12px_13px_rgba(11,167,166,0.24)] transition-opacity hover:opacity-90"
             >
               {t.common.viewProducts}

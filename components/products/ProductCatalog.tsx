@@ -9,6 +9,7 @@ import type { Product } from "@/lib/admin/store";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { FileIcon } from "@/components/ui/icons";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { withLocale } from "@/lib/i18n/config";
 import { CONTAINER, productName } from "@/lib/utils";
 
 export function ProductCatalog({ products }: { products: Product[] }) {
@@ -136,7 +137,7 @@ export function ProductCatalog({ products }: { products: Product[] }) {
                       </dl>
                       <div className="mt-5 flex gap-2">
                         <Link
-                          href={`/products/${product.slug}`}
+                          href={withLocale(locale, `/products/${product.slug}`)}
                           className="bg-brand-gradient flex h-12 flex-1 items-center justify-between rounded-[14px] px-5 text-[12px] font-bold text-white"
                         >
                           {c.passportCta} <ArrowRightIcon className="size-4" />
@@ -182,7 +183,7 @@ export function ProductCatalog({ products }: { products: Product[] }) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="/contact"
+                href={withLocale(locale, "/contact")}
                 className="bg-brand-gradient inline-flex h-12 items-center gap-4 rounded-[14px] px-5 text-[12px] font-bold text-white"
               >
                 {c.contact.primary} <ArrowRightIcon className="size-4" />

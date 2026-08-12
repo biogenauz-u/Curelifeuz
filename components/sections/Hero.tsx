@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Header } from "@/components/layout/Header";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
+import { withLocale } from "@/lib/i18n/config";
 import { CERTIFICATES_HREF } from "@/lib/site-config";
 import { cn, CONTAINER_WIDE } from "@/lib/utils";
 
@@ -15,7 +16,7 @@ import { cn, CONTAINER_WIDE } from "@/lib/utils";
  * + 47 + 58 (matn) + 48 + 52 (tugmalar) + 15 + 36 (ogohlantirish) + 311 = 1080.
  */
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     // Balandlik `.hero-frame` orqali globals.css da beriladi: keng ekranda
@@ -74,7 +75,7 @@ export function Hero() {
           {/* Tugmalar — node 257:2464 */}
           <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-[32px] lg:mt-[48px]">
             <a
-              href="/products"
+              href={withLocale(locale, "/products")}
               className="bg-brand-gradient inline-flex h-[52px] items-center gap-2 rounded-pill pr-[23px] pl-[17px] text-[16px] text-white transition-opacity hover:opacity-90"
             >
               {t.hero.ctaPrimary}
@@ -82,7 +83,7 @@ export function Hero() {
             </a>
 
             <a
-              href={CERTIFICATES_HREF}
+              href={withLocale(locale, CERTIFICATES_HREF)}
               className="inline-flex h-[52px] items-center rounded-pill border border-brand-200 bg-white/72 px-[20px] text-[16px] text-ink transition-colors hover:bg-white"
             >
               {t.hero.ctaSecondary}

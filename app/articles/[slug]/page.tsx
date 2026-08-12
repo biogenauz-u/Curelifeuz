@@ -7,11 +7,15 @@ import { ArticleCard, excerpt, formatDate } from "@/components/articles/ArticleC
 import { ViewCounter } from "@/components/articles/ViewCounter";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getArticles, getProducts, type Article } from "@/lib/admin/store";
+import { withLocale } from "@/lib/i18n/config";
 import { plural, VIEWS_FORMS } from "@/lib/i18n/plural";
+import { SITE_URL, resolvePageMeta } from "@/lib/i18n/page-meta";
 import { getServerDictionary, resolveLocale } from "@/lib/i18n/server";
+import { articleSchema, breadcrumbSchema } from "@/lib/seo/schema";
 import { CONTAINER, productName } from "@/lib/utils";
 
 async function findArticle(slug: string): Promise<Article | undefined> {
@@ -26,10 +30,11 @@ export async function generateMetadata({
   if (!article) return {};
 
   const text = article[locale];
-  return {
+  return resolvePageMeta(`/articles/${slug}`, {
     title: `${text.title} — CureLife`,
     description: excerpt(text.body, 160),
-  };
+    image: article.image,
+  });
 }
 
 export default async function ArticlePage({
@@ -53,9 +58,18 @@ export default async function ArticlePage({
     (p) => p.id === article.relatedProductId && p.visible,
   );
   const relatedText = relatedProduct?.[locale];
+  const pageUrl = `${SITE_URL}/${locale}/articles/${slug}`;
 
   return (
     <>
+      <JsonLd data={articleSchema(locale, article, text.title, excerpt(text.body, 160), pageUrl)} />
+      <JsonLd
+        data={breadcrumbSchema(locale, [
+          { name: dict.nav.home, path: "/" },
+          { name: a.listTitle, path: "/articles" },
+          { name: text.title, path: `/articles/${slug}` },
+        ])}
+      />
       <ViewCounter articleId={article.id} />
       <main className="overflow-hidden bg-[linear-gradient(180deg,#fff,#f3fdfc)] text-ink-deep">
         <Header />
@@ -63,7 +77,7 @@ export default async function ArticlePage({
         <article className="pt-12 pb-24 lg:pt-16 lg:pb-32">
           <div className={`${CONTAINER} max-w-[900px]`}>
             <Link
-              href="/articles"
+              href={withLocale(locale, "/articles")}
               className="inline-flex items-center gap-2 text-[12px] font-semibold text-body transition-colors hover:text-accent"
             >
               <span aria-hidden>&larr;</span> {a.back}
@@ -127,7 +141,7 @@ export default async function ArticlePage({
                     {relatedText.description}
                   </p>
                   <Link
-                    href={`/products/${relatedProduct.slug}`}
+                    href={withLocale(locale, `/products/${relatedProduct.slug}`)}
                     className="bg-brand-gradient mt-6 inline-flex h-11 items-center gap-4 rounded-pill px-5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     {a.relatedProduct.cta} <ArrowRightIcon className="size-4" />

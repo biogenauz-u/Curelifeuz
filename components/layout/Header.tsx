@@ -32,7 +32,9 @@ const NAV_ITEMS: Array<{ key: keyof Dictionary["nav"]; href: string }> = [
  * vizual ko'rinish maketdagidek qoladi.
  */
 export function Header() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  const homeHref = `/${locale}#hero`;
+  const navHref = (href: string) => `/${locale}${href}`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -105,7 +107,7 @@ export function Header() {
             )}
           >
             <a
-              href="/#hero"
+              href={homeHref}
               aria-label="CureLife"
               className="grid h-11 shrink-0 place-items-center rounded-pill px-2"
             >
@@ -127,7 +129,7 @@ export function Header() {
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.key}
-                  href={item.href}
+                  href={item.key === "home" ? homeHref : navHref(item.href)}
                   className="inline-flex h-11 items-center rounded-pill px-2 text-[18px] whitespace-nowrap text-ink transition-colors hover:text-brand-600"
                 >
                   {t.nav[item.key]}
@@ -166,7 +168,7 @@ export function Header() {
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.key}
-                  href={item.href}
+                  href={item.key === "home" ? homeHref : navHref(item.href)}
                   onClick={closeMenu}
                   className="flex min-h-11 items-center rounded-pill px-4 text-[17px] text-ink transition-colors hover:bg-brand-100"
                 >

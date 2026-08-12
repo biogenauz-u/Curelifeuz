@@ -30,7 +30,7 @@ const SOCIALS = [
 
 /** Figma node 189:884. */
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const settings = useSiteSettings();
 
   return (
@@ -59,7 +59,7 @@ export function Footer() {
               {MENU.map((item) => (
                 <li key={item.key}>
                   <a
-                    href={item.href}
+                    href={`/${locale}${item.href}`}
                     className="inline-flex min-h-11 items-center text-[14px] text-white/75 transition-colors hover:text-white"
                   >
                     {t.footer.menu[item.key]}

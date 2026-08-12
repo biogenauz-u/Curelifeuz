@@ -266,6 +266,11 @@ export type Dictionary = {
     title: string;
     description: string;
   };
+  notFound: {
+    title: string;
+    body: string;
+    cta: string;
+  };
 };
 
 const ru: Dictionary = {
@@ -718,6 +723,11 @@ const ru: Dictionary = {
     title: "CureLife — европейское качество для вашей жизни",
     description:
       "Биологически активные добавки на основе немецкого сырья для комплексной заботы о здоровье всей семьи.",
+  },
+  notFound: {
+    title: "Страница не найдена",
+    body: "Возможно, ссылка устарела или страница была перемещена. Проверьте адрес или вернитесь на главную.",
+    cta: "На главную",
   },
 };
 
@@ -1172,6 +1182,11 @@ const uz: Dictionary = {
     title: "CureLife — hayotingiz uchun yevropa sifati",
     description:
       "Butun oila salomatligi haqida keng qamrovli g‘amxo‘rlik uchun nemis xomashyosi asosidagi biologik faol qo‘shimchalar.",
+  },
+  notFound: {
+    title: "Sahifa topilmadi",
+    body: "Havola eskirgan yoki sahifa ko‘chirilgan bo‘lishi mumkin. Manzilni tekshiring yoki bosh sahifaga qayting.",
+    cta: "Bosh sahifaga",
   },
 };
 

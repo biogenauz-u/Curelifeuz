@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { withLocale } from "@/lib/i18n/config";
 import { CONTAINER, H2, H2_LG, SECTION_Y } from "@/lib/utils";
 
 /**
@@ -36,7 +37,7 @@ const CARDS = [
 
 /** Figma node 189:526 — "03 / Направления". */
 export function Directions() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <section
@@ -89,7 +90,7 @@ export function Directions() {
                 </p>
 
                 <a
-                  href="/products"
+                  href={withLocale(locale, "/products")}
                   className="mt-auto flex min-h-11 items-center justify-between gap-4 px-[8px] pt-[16px] pb-[6px] text-[14px] font-bold text-brand-700 transition-colors hover:text-accent"
                 >
                   {t.directions.link}

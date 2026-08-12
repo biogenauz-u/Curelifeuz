@@ -8,6 +8,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRightIcon } from "@/components/ui/ArrowRightIcon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import type { Product } from "@/lib/admin/store";
+import { withLocale } from "@/lib/i18n/config";
 import { cn, CONTAINER, H2, H2_LG, productName, SECTION_Y } from "@/lib/utils";
 
 /**
@@ -212,7 +213,7 @@ export function ProductPassport({ products }: { products: Product[] }) {
             {/* Mahsulot rasmi — node 189:796. Maketda alohida tugma yo'q,
                 shuning uchun kartaning o'zi bosiladigan qilingan. */}
             <ImageCard
-              href={`/products/${product.slug}`}
+              href={withLocale(locale, `/products/${product.slug}`)}
               label={t.passport.openProduct}
             >
               {product.detailImage ?? product.image ? (
