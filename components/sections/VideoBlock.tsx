@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { PlayIcon } from "@/components/ui/icons";
@@ -40,32 +40,36 @@ function toEmbedUrl(url: string): string | null {
  * kesilgan; ustiga feruza tus berilgan, markazda 73px oq play tugmasi.
  *
  * Video manzili (`VIDEO_URL`) sozlanmagan bo'lsa — bosiladigan tugma
- * chizilmaydi: ishlamaydigan boshqaruv elementi qoldirilmaydi. YouTube/Vimeo
- * havolasi bo'lsa, bosilganda sahifadan chiqmasdan, modal oynada o'ynatiladi.
+ * chizilmaydi. YouTube/Vimeo havolasi bo'lsa, bosilganda MODAL OCHILMAYDI —
+ * aynan shu ramka ichida (poster rasm o'rnida) video o'ynay boshlaydi.
  */
 export function VideoBlock() {
   const { t } = useLanguage();
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const [playing, setPlaying] = useState(false);
 
   const embedUrl = VIDEO_URL ? toEmbedUrl(VIDEO_URL) : null;
+  const frame = "relative block aspect-[1180/677] w-full overflow-hidden rounded-[32px]";
 
-  const close = useCallback(() => {
-    dialogRef.current?.close();
-  }, []);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    const onClose = () => setPlaying(false);
-    dialog.addEventListener("close", onClose);
-    return () => dialog.removeEventListener("close", onClose);
-  }, []);
-
-  const open = () => {
-    setPlaying(true);
-    dialogRef.current?.showModal();
-  };
+  if (playing && embedUrl) {
+    return (
+      <section id="video" className={`${SECTION_PB} lg:pb-[96px]`}>
+        <div className={CONTAINER}>
+          <div className={frame}>
+            <iframe
+              src={embedUrl}
+              title={t.video.alt}
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 size-full"
+            />
+          </div>
+          <p className="mt-4 text-center text-[12px] font-semibold text-label">
+            {t.video.caption}
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   const media = (
     <>
@@ -92,14 +96,17 @@ export function VideoBlock() {
     </>
   );
 
-  const frame = "group relative block aspect-[1180/677] w-full overflow-hidden rounded-[32px]";
-
   return (
     <section id="video" className={`${SECTION_PB} lg:pb-[96px]`}>
       <div className={CONTAINER}>
         {VIDEO_URL ? (
           embedUrl ? (
-            <button type="button" onClick={open} aria-label={t.video.play} className={`${frame} cursor-pointer`}>
+            <button
+              type="button"
+              onClick={() => setPlaying(true)}
+              aria-label={t.video.play}
+              className={`${frame} group cursor-pointer`}
+            >
               {media}
             </button>
           ) : (
@@ -109,7 +116,7 @@ export function VideoBlock() {
               target="_blank"
               rel="noreferrer"
               aria-label={t.video.play}
-              className={`${frame} cursor-pointer`}
+              className={`${frame} group cursor-pointer`}
             >
               {media}
             </a>
@@ -126,37 +133,6 @@ export function VideoBlock() {
           </p>
         )}
       </div>
-
-      {embedUrl && (
-        <dialog
-          ref={dialogRef}
-          aria-label={t.video.play}
-          onClick={(e) => {
-            if (e.target === dialogRef.current) close();
-          }}
-          className="m-auto w-[min(94vw,1100px)] overflow-hidden rounded-[24px] bg-black p-0 backdrop:bg-ink-deep/85"
-        >
-          {playing && (
-            <div className="relative aspect-video w-full">
-              <button
-                type="button"
-                onClick={close}
-                aria-label={t.video.close}
-                className="absolute top-3 right-3 z-10 grid size-10 cursor-pointer place-items-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-black/80"
-              >
-                ✕
-              </button>
-              <iframe
-                src={embedUrl}
-                title={t.video.alt}
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-                className="size-full"
-              />
-            </div>
-          )}
-        </dialog>
-      )}
     </section>
   );
 }
