@@ -140,28 +140,40 @@ export function ArticleForm({
 
   const fileRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const previewRef = useRef<string | null>(null);
   const [removed, setRemoved] = useState(false);
   const [imageError, setImageError] = useState("");
   const shown = preview ?? (removed ? null : article.image);
 
+  // Blob URL faqat almashtirilganda yoki komponent butunlay yo'qolganda
+  // bekor qilinadi — `[preview]`ga bog'liq effekt ishlatilmaydi, chunki u
+  // Strict Mode'ning ikki marta chaqirishida yangi tanlangan rasmni zudlik
+  // bilan bekor qilib, "buzilgan rasm" ko'rsatib qo'yardi.
   useEffect(() => {
-    if (!preview) return;
-    return () => URL.revokeObjectURL(preview);
-  }, [preview]);
+    return () => {
+      if (previewRef.current) URL.revokeObjectURL(previewRef.current);
+    };
+  }, []);
+
+  const setPreviewUrl = (url: string | null) => {
+    if (previewRef.current) URL.revokeObjectURL(previewRef.current);
+    previewRef.current = url;
+    setPreview(url);
+  };
 
   const pick = (file: File | null) => {
     setImageError("");
-    if (!file) return setPreview(null);
+    if (!file) return setPreviewUrl(null);
     const reject = (message: string) => {
       if (fileRef.current) fileRef.current.value = "";
-      setPreview(null);
+      setPreviewUrl(null);
       setImageError(message);
     };
     if (!ACCEPT.split(",").includes(file.type)) {
       return reject("Faqat PNG, JPG, WEBP yoki AVIF rasm bo‘lishi mumkin.");
     }
     if (file.size > MAX_BYTES) return reject("Rasm hajmi 10 MB dan oshmasin.");
-    setPreview(URL.createObjectURL(file));
+    setPreviewUrl(URL.createObjectURL(file));
     setRemoved(false);
   };
 
@@ -290,7 +302,7 @@ export function ArticleForm({
                 onClick={() => {
                   if (fileRef.current) fileRef.current.value = "";
                   setImageError("");
-                  setPreview(null);
+                  setPreviewUrl(null);
                   setRemoved(true);
                 }}
                 className="h-9 cursor-pointer rounded-[11px] border border-[#f0dede] px-4 text-[10px] font-bold text-[#9d4c4c]"

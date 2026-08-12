@@ -254,6 +254,7 @@ function FileField({
 }) {
   const ref = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const previewRef = useRef<string | null>(null);
   const [pickedName, setPickedName] = useState("");
   const [removed, setRemoved] = useState(false);
   const [error, setError] = useState("");
@@ -263,18 +264,29 @@ function FileField({
   const shownName = preview ? pickedName : (current ?? "");
   const isPdf = shownName.toLowerCase().endsWith(".pdf");
 
+  // Blob URL faqat almashtirilganda yoki komponent butunlay yo'qolganda
+  // bekor qilinadi — `[preview]`ga bog'liq effekt ishlatilmaydi, chunki u
+  // Strict Mode'ning ikki marta chaqirishida yangi tanlangan rasmni zudlik
+  // bilan bekor qilib, "buzilgan rasm" ko'rsatib qo'yardi.
   useEffect(() => {
-    if (!preview) return;
-    return () => URL.revokeObjectURL(preview);
-  }, [preview]);
+    return () => {
+      if (previewRef.current) URL.revokeObjectURL(previewRef.current);
+    };
+  }, []);
+
+  const setPreviewUrl = (url: string | null) => {
+    if (previewRef.current) URL.revokeObjectURL(previewRef.current);
+    previewRef.current = url;
+    setPreview(url);
+  };
 
   const pick = (file: File | null) => {
     setError("");
-    if (!file) return setPreview(null);
+    if (!file) return setPreviewUrl(null);
 
     const reject = (message: string) => {
       if (ref.current) ref.current.value = "";
-      setPreview(null);
+      setPreviewUrl(null);
       setError(message);
     };
     if (!accept.split(",").includes(file.type)) {
@@ -287,14 +299,14 @@ function FileField({
     if (file.size > MAX_BYTES) return reject("Fayl hajmi 10 MB dan oshmasligi kerak.");
 
     setPickedName(file.name);
-    setPreview(URL.createObjectURL(file));
+    setPreviewUrl(URL.createObjectURL(file));
     setRemoved(false);
   };
 
   const clear = () => {
     if (ref.current) ref.current.value = "";
     setError("");
-    setPreview(null);
+    setPreviewUrl(null);
     setRemoved(true);
   };
 
