@@ -38,7 +38,7 @@ export const CERTIFICATES_HREF = "/about#certificates";
  * Manzil o'zgarsa: Yandex Xaritalarda joyni oching → «Поделиться» →
  * «Код для сайта» va bu yerdagi ikkala qiymatni yangilang.
  */
-export const MAP_LINK = "https://yandex.uz/maps/-/CTSzqRY3";
+export const MAP_LINK = "https://yandex.uz/maps/-/CTW85QNb";
 
 export const MAP_EMBED =
-  "https://yandex.uz/map-widget/v1/?ll=69.165478%2C41.262323&z=17&pt=69.165478,41.262323,pm2rdm";
+  "https://yandex.uz/map-widget/v1/?ll=69.216540%2C41.266277&z=17&pt=69.216540,41.266277,pm2rdm";

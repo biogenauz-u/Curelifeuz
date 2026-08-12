@@ -10,10 +10,13 @@ import { BODY, CONTAINER, H2, H2_LG, SECTION_Y } from "@/lib/utils";
 
 const CARD_ICONS = [ShieldIcon, FileIcon, MapIcon];
 
+/** PDF hujjat — rasm sifatida ko'rsatib bo'lmaydi, statik rasm bilan almashtiriladi. */
+const isPdf = (file: string) => file.toLowerCase().endsWith(".pdf");
+
 /**
- * Ikkala sertifikat ham bitta rasm — maketda turli burchak va joyda.
- * Foizlar 609×481 li o'ng panelga nisbatan, varaq MARKAZI bo'yicha olingan
- * (node 261:2501 / 261:2502). Pastki qismi panel chetida kesiladi.
+ * Ikki karta joylashuvi — maketda turli burchak va joyda. Foizlar 609×481
+ * li o'ng panelga nisbatan, varaq MARKAZI bo'yicha olingan (node 261:2501 /
+ * 261:2502). Pastki qismi panel chetida kesiladi.
  */
 const CERTS = [
   { left: "37.4%", top: "74.8%", rotate: "-15.09deg" },
@@ -21,8 +24,13 @@ const CERTS = [
 ] as const;
 
 /** Figma node 189:566 — "05 / Доверие". */
-export function Trust() {
+export function Trust({ certificates }: { certificates: string[] }) {
   const { t } = useLanguage();
+
+  // Haqiqiy (rasm formatidagi) mahsulot sertifikatlari — yetmasa yoki
+  // umuman bo'lmasa, dizayndagi namunaviy rasm bilan to'ldiriladi.
+  const real = certificates.filter((c) => !isPdf(c));
+  const images = [real[0], real[1] ?? real[0]].map((c) => c ?? "/images/certificate.jpg");
 
   return (
     <section
@@ -59,7 +67,7 @@ export function Trust() {
                 aria-hidden
                 className="absolute inset-0 bg-[radial-gradient(closest-side_at_60%_40%,rgba(151,225,219,0.65),rgba(151,225,219,0)_70%)]"
               />
-              {CERTS.map((c) => (
+              {CERTS.map((c, i) => (
                 <div
                   key={c.rotate}
                   className="absolute aspect-[262/370] w-[43%] overflow-hidden rounded-[6px] shadow-[0_18px_40px_rgba(0,119,118,0.18)]"
@@ -70,7 +78,7 @@ export function Trust() {
                   }}
                 >
                   <Image
-                    src="/images/certificate.jpg"
+                    src={images[i]}
                     alt={t.trust.certAlt}
                     fill
                     sizes="(max-width: 1024px) 45vw, 262px"

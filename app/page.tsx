@@ -25,7 +25,7 @@ export default async function Home() {
         <Concerns />
         <Directions />
         <ProductPassport products={products} />
-        <Trust />
+        <Trust certificates={products.map((p) => p.certificate).filter((c) => c !== null)} />
         <About productCount={products.length} />
         <Journey />
         <VideoBlock />
