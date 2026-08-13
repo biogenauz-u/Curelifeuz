@@ -25,7 +25,7 @@ function ImageCard({
   children: React.ReactNode;
 }) {
   const box =
-    "group relative block h-[260px] overflow-hidden rounded-[22px] lg:h-full lg:min-h-[390px]";
+    "group relative block h-[320px] overflow-hidden rounded-[22px] lg:h-full lg:min-h-[480px]";
   if (!href) return <div className={box}>{children}</div>;
   return (
     <Link

@@ -103,7 +103,7 @@ export function ProductCatalog({ products }: { products: Product[] }) {
                           alt={product.name}
                           fill
                           sizes="(max-width:1024px) 100vw,590px"
-                          className="object-contain p-6 sm:p-7"
+                          className="object-contain p-10 sm:p-14"
                         />
                       ) : (
                         <div className="absolute inset-0 grid place-items-center">
