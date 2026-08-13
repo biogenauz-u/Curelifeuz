@@ -144,12 +144,15 @@ export default async function ProductPassportPage({
   const [usageTitle, usageAccent] = splitAccent(d.usageTitle);
   const heroImage = product.detailImage ?? product.image;
 
-  // Chiqarilish shakli (masalan "Саше"/"sashe") kompozitsiya jadvalidagi
-  // birlik yorlig'ini belgilaydi — faqat shu turdagi mahsulotlarda
-  // "капсула" o'rniga "саше" ko'rsatiladi.
-  const compositionUnitLabel = /саше|sashe/i.test(text.stats[0] ?? "")
+  // Chiqarilish shakli (masalan "Саше"/"sashe", "Гель"/"gel") kompozitsiya
+  // jadvalidagi birlik yorlig'ini belgilaydi — faqat shu turdagi
+  // mahsulotlarda "капсула" o'rniga mos birlik ko'rsatiladi.
+  const releaseForm = text.stats[0] ?? "";
+  const compositionUnitLabel = /саше|sashe/i.test(releaseForm)
     ? t.composition.perSachet
-    : t.composition.perCapsule;
+    : /аппликатор|гель|\bapplikator\b|\bgel\b/i.test(releaseForm)
+      ? t.composition.perApplicator
+      : t.composition.perCapsule;
 
   // "Xomashyo (fakt)"/"Ishlab chiqaruvchi (fakt)" bo'sh qoldirilsa, "Kelib
   // chiqishi" bo'limidagi ma'lumotdan (mahalliy yoki import turiga qarab)
