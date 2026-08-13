@@ -292,7 +292,7 @@ const ru: Dictionary = {
   },
   stats: {
     experience: { value: "5 лет", label: "Опыт на рынке" },
-    team: { value: "20+", label: "Сотрудников" },
+    team: { value: "20+", label: "Сотрудников в команде" },
     packages: { value: "100 000+", label: "Доставленных упаковок" },
     products: { label: "Продуктов в ассортименте" },
   },
@@ -750,7 +750,7 @@ const uz: Dictionary = {
   },
   stats: {
     experience: { value: "5 yil", label: "Bozordagi tajriba" },
-    team: { value: "20+", label: "Xodimlar" },
+    team: { value: "20+", label: "Jamoadagi xodimlar" },
     packages: { value: "100 000+", label: "Yetkazilgan qadoqlar" },
     products: { label: "Assortimentdagi mahsulot" },
   },
