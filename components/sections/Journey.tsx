@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { cn, CONTAINER, SECTION_PB } from "@/lib/utils";
+import { CONTAINER, SECTION_PB } from "@/lib/utils";
 
 /** Figma node 189:817 — "07 / Путь продукта". Butun bo'lim — qorong'i karta. */
 export function Journey() {
@@ -28,39 +28,22 @@ export function Journey() {
           </div>
 
           <ol className="mt-[60px] grid gap-[10px] sm:grid-cols-2 lg:grid-cols-4">
-            {t.journey.steps.map((step, i) => {
-              // Maketda oxirgi karta "shaffof" — u hali kelajakdagi bosqich.
-              const ghost = i === t.journey.steps.length - 1;
-              return (
-                <li
-                  key={step.title}
-                  className={cn(
-                    "rounded-[18px] border border-white/13 px-[22px] pt-[19px] pb-[26px]",
-                    ghost ? "bg-white/7" : "bg-white/92",
-                  )}
-                >
-                  <p className="font-display text-[70px] leading-[70px] font-bold text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3
-                    className={cn(
-                      "mt-[16px] font-display text-[18px] leading-[20px] font-bold tracking-[-0.045em]",
-                      ghost ? "text-white" : "text-ink-deep",
-                    )}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    className={cn(
-                      "mt-[11px] text-[11px] leading-[17.05px]",
-                      ghost ? "text-[#b8cfcc]" : "text-[#6b8280]",
-                    )}
-                  >
-                    {step.body}
-                  </p>
-                </li>
-              );
-            })}
+            {t.journey.steps.map((step, i) => (
+              <li
+                key={step.title}
+                className="rounded-[18px] border border-white/13 bg-white/92 px-[22px] pt-[19px] pb-[26px]"
+              >
+                <p className="font-display text-[70px] leading-[70px] font-bold text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-[16px] font-display text-[18px] leading-[20px] font-bold tracking-[-0.045em] text-ink-deep">
+                  {step.title}
+                </h3>
+                <p className="mt-[11px] text-[11px] leading-[17.05px] text-[#6b8280]">
+                  {step.body}
+                </p>
+              </li>
+            ))}
           </ol>
         </div>
       </div>

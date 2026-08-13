@@ -53,14 +53,6 @@ export function Hero() {
       <div className={cn(CONTAINER_WIDE, "relative")}>
         {/* Hero'da barcha matn Manrope bilan terilgan (maketdagidek) */}
         <div className="pt-10 pb-[92px] font-display sm:pt-[60px] lg:pt-[149px] lg:pb-0">
-          {/* Badge — node 257:2459 */}
-          <div className="flex w-fit items-center gap-[9px] rounded-pill border border-brand-200 bg-white/68 py-[7px] pr-[15px] pl-[13px] backdrop-blur-[6px] lg:h-[32px] lg:py-0">
-            <span className="size-[7px] shrink-0 rounded-full bg-ink-deep" />
-            <span className="text-[11px] font-bold tracking-[0.14em] text-brand-700 uppercase sm:text-[12px] lg:whitespace-nowrap">
-              {t.hero.badge}
-            </span>
-          </div>
-
           {/* Sarlavha — node 257:2462 */}
           <h1 className="mt-6 max-w-[686px] text-[34px] sm:mt-[28px] sm:text-[36px] leading-[1.05] font-extrabold tracking-[-0.029em] text-ink sm:text-[46px] lg:mt-[37px] lg:text-[60px] lg:leading-[59px]">
             <span className="text-brand-gradient">{t.hero.titleAccent}</span>{" "}

@@ -16,7 +16,6 @@ export type Dictionary = {
     contacts: string;
   };
   hero: {
-    badge: string;
     titleAccent: string;
     titleRest: string;
     subtitle: string;
@@ -57,7 +56,6 @@ export type Dictionary = {
     openProduct: string;
     fields: { raw: string; maker: string; role: string };
     statLabels: { form: string; pack: string; intake: string };
-    note: string;
   };
   trust: {
     label: string;
@@ -283,7 +281,6 @@ const ru: Dictionary = {
     contacts: "Контакты",
   },
   hero: {
-    badge: "5 лет помогаем делать здоровый выбор",
     titleAccent: "CureLife —",
     titleRest: "европейское качество для вашей жизни",
     subtitle:
@@ -294,8 +291,8 @@ const ru: Dictionary = {
       "Перед применением ознакомьтесь с инструкцией и проконсультируйтесь со специалистом.",
   },
   stats: {
-    experience: { value: "5 лет", label: "Опыт на рынке БАД" },
-    team: { value: "20+", label: "Членов команды" },
+    experience: { value: "5 лет", label: "Опыт на рынке" },
+    team: { value: "20+", label: "Сотрудников" },
     packages: { value: "100 000+", label: "Доставленных упаковок" },
     products: { label: "Продуктов в ассортименте" },
   },
@@ -348,7 +345,6 @@ const ru: Dictionary = {
       pack: "Упаковка",
       intake: "Приём",
     },
-    note: "Здесь размещается краткая важная информация по ограничениям и приёму. Перед применением проконсультируйтесь со специалистом.",
   },
   trust: {
     label: "05 / Доверие",
@@ -627,7 +623,7 @@ const ru: Dictionary = {
   },
   articles: {
     label: "08 / Статьи",
-    title: "Понятные материалы о",
+    title: "Материалы о",
     titleAccent: "составе и применении.",
     intro: "Короткие статьи о том, как читать состав, хранить продукт и когда стоит обратиться к специалисту.",
     all: "Все статьи",
@@ -743,7 +739,6 @@ const uz: Dictionary = {
     contacts: "Aloqa",
   },
   hero: {
-    badge: "5 yildan buyon sog‘lom tanlov qilishga yordam beramiz",
     titleAccent: "CureLife —",
     titleRest: "hayotingiz uchun yevropa sifati",
     subtitle:
@@ -754,8 +749,8 @@ const uz: Dictionary = {
       "Qo‘llashdan oldin yo‘riqnoma bilan tanishing va mutaxassis bilan maslahatlashing.",
   },
   stats: {
-    experience: { value: "5 yil", label: "BFQ bozoridagi tajriba" },
-    team: { value: "20+", label: "Jamoa a’zolari" },
+    experience: { value: "5 yil", label: "Bozordagi tajriba" },
+    team: { value: "20+", label: "Xodimlar" },
     packages: { value: "100 000+", label: "Yetkazilgan qadoqlar" },
     products: { label: "Assortimentdagi mahsulot" },
   },
@@ -808,7 +803,6 @@ const uz: Dictionary = {
       pack: "Qadoq",
       intake: "Qabul",
     },
-    note: "Bu yerda cheklovlar va qabul bo‘yicha qisqa muhim ma’lumot joylashtiriladi. Qo‘llashdan oldin mutaxassis bilan maslahatlashing.",
   },
   trust: {
     label: "05 / Ishonch",
@@ -1089,7 +1083,7 @@ const uz: Dictionary = {
   articles: {
     label: "08 / Maqolalar",
     title: "Tarkib va qo‘llash haqida",
-    titleAccent: "tushunarli maqolalar.",
+    titleAccent: "maqolalar.",
     intro: "Tarkibni qanday o‘qish, mahsulotni qanday saqlash va qachon mutaxassisga murojaat qilish haqida qisqa maqolalar.",
     all: "Barcha maqolalar",
     readMore: "Batafsil o‘qish",

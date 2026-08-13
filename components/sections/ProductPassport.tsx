@@ -53,10 +53,7 @@ export function ProductPassport({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
   const tabsRef = useRef<Array<HTMLButtonElement | null>>([]);
 
-  // Bu bo'lim 4 ustunli katakka mo'ljallangan (Figma) — ko'proq mahsulot
-  // bo'lsa ham shu yerda faqat birinchi 4 tasi ko'rsatiladi. Qolganlari
-  // "/products" to'liq katalogida ko'rinadi.
-  const items = products.slice(0, 4);
+  const items = products;
   if (!items.length) return null;
 
   const product = items[Math.min(active, items.length - 1)];
@@ -73,12 +70,12 @@ export function ProductPassport({ products }: { products: Product[] }) {
   const rows = (
     origin.type === "imported"
       ? [
-          ["maker", origin.importedCountry],
+          ["maker", origin.importedFull || origin.importedCountry],
           ["role", origin.role],
         ]
       : [
-          ["raw", origin.rawCountry],
-          ["maker", origin.makeCountry],
+          ["raw", origin.rawFull || origin.rawCountry],
+          ["maker", origin.manufacturerFull || origin.makeCountry],
           ["role", origin.role],
         ]
   ) as ReadonlyArray<readonly [keyof typeof t.passport.fields, string]>;
@@ -252,10 +249,6 @@ export function ProductPassport({ products }: { products: Product[] }) {
                   </div>
                 ))}
               </dl>
-
-              <p className="mt-[22px] rounded-[14px] bg-[#ddf7f3] p-[16px] text-[13px] leading-[1.6] text-[#41605e]">
-                {t.passport.note}
-              </p>
             </div>
           </div>
         </div>
