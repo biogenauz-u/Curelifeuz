@@ -117,7 +117,8 @@ export function ProductPassport({ products }: { products: Product[] }) {
           role="tablist"
           aria-label={t.passport.title}
           onKeyDown={onKeyDown}
-          className="mt-10 -mx-4 flex snap-x gap-[10px] overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-[48px] lg:grid-cols-4"
+          className="mt-10 -mx-4 flex snap-x gap-[10px] overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-[48px]"
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
         >
           {items.map((p, i) => {
             const selected = i === active;
@@ -221,7 +222,7 @@ export function ProductPassport({ products }: { products: Product[] }) {
                     alt={title}
                     fill
                     sizes="(max-width: 1024px) 90vw, 540px"
-                    className="object-contain object-center"
+                    className="scale-[1.2] object-contain object-center"
                   />
                 </div>
               ) : (
