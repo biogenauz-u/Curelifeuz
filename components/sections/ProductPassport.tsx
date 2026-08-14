@@ -221,7 +221,7 @@ export function ProductPassport({ products }: { products: Product[] }) {
                     alt={title}
                     fill
                     sizes="(max-width: 1024px) 90vw, 540px"
-                    className="object-contain object-center"
+                    className="object-cover object-center"
                   />
                 </div>
               ) : (
